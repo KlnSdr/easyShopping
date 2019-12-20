@@ -70,8 +70,9 @@ table {
 
 .ListButton {
     /*Hier sollte etwas sinnvolles sein, aber ich mache das nur, um alle buttons in der Einkaufsliste zu bekommen*/
-    width: calc(100% - 10px);
-    margin-top: 5px;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .menuButton {
