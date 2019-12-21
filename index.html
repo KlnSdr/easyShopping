@@ -103,15 +103,32 @@
     <!-- ========================================================================================================================================== -->
     <div id="selectList" class="container">
         <label class="header">Einkaufszettel</label>
+        <table id="ListParent">
+        </table>
+    </div>
+    <!-- ========================================================================================================================================== -->
+    <div id="settings" class="container">
+        <label class="header">Settings</label>
+        <table>
+            <tr>
+                <td>
+
+                    <button class="button fa fa-undo" onclick="resetList()"></button>
+                </td>
+
+                <td>
+                    <button class="button fa fa-download" onclick="download('Einkaufszettel.html')"></button>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!-- ========================================================================================================================================== -->
 
-
     <div class="bottomMenu aligner">
-        <button class="fa fa-home menuButton" onclick="switchTo('menu')"></button>
         <button class="fa fa-list menuButton" onclick="switchTo('selectList'); generateList();"></button>
-        <!-- <button class="fa fa-cog menuButton" onclick="gotoSettings()"></button> -->
+        <button class="fa fa-home menuButton" onclick="switchTo('menu')"></button>
+        <button class="fa fa-cog menuButton" onclick="switchTo('settings')"></button>
     </div>
 </body>
 
