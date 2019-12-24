@@ -1,6 +1,64 @@
+//Public==============
+let products = '000Obst;selectObstGemuse;0,001Salatkräuter;selectObstGemuse;0,002Gemüse;selectObstGemuse;0,003Zwiebeln;selectObstGemuse;0,004Kartoffeln;selectObstGemuse;0,005Kloßteig;selectSonst;0,006Salat;selectObstGemuse;0,007Müsli;selectGenuss;0,008Cornflakes;selectGenuss;0,009Marabou;selectGenuss;0,010Kaffeeschokolade;selectGenuss;0,011Kinderschokolade;selectGenuss;0,012gezuckerte Kondensmilch;selectMilch;0,013Kaffee;selectGenuss;0,014Espresso;selectGenuss;0,015Karamellsirup;selectSonst;0,016Müsliriegel;selectBackwaren;0,017Toast;selectBackwaren;0,018Brötchen;selectBackwaren;0,019Pudding;selectGenuss;0,020Salz;selectSonst;0,021Zucker;selectSonst;0,022Mehl;selectBackwaren;0,023passierte Tomaten;selectNudeln;0,024Nudeln;selectNudeln;0,025Tomatenmark;selectNudeln;0,026Oliven;selectNudeln;0,027Senf;selectSonst;0,028Tortillas;selectBackwaren;0,029Balsamicocreme;selectNudeln;0,030Ketchup;selectNudeln;0,031Öl;selectSonst;0,032Paprika;selectSonst;0,033Pfeffer;selectSonst;0,034Wiener;selectSonst;0,035Kartoffeltaschen;selectTiefgefroren;0,036Chicken Wings;selectTiefgefroren;0,037Pizza;selectTiefgefroren;0,038Piccolinis;selectTiefgefroren;0,039Eis;selectMilch;0,040Milch;selectMilch;0,041Kakaomilch;selectMilch;0,042Sahne;selectMilch;0,043Schmand;selectMilch;0,044Saure Sahne;selectMilch;0,045Quark;selectMilch;0,046Butter;selectMilch;0,047Joghurt;selectMilch;0,048Käsebelag;selectMilch;0,049Soßenkäse;selectMilch;0,050Streuselkäse;selectMilch;0,051Feta;selectMilch;0,052Frischkäse Pur;selectMilch;0,053Frischkäse Kräuter;selectMilch;0,054Parmesan;selectMilch;0,055Saft;selectGetranke;0,056Gaskartusche;selectGetranke;0,057Gingerale Sirup;selectGetranke;0,058Orangen Sirup;selectGetranke;0,059Kaugummis;selectSonst;0,060Isostar;selectGetranke;0,061Waschmittel;selectHygiene;0,062WC-Reiniger;selectHygiene;0,063Flüssigwaschmittel;selectHygiene;0,064Fensterreiniger;selectHygiene;0,065Hygienespüler;selectHygiene;0,066Zahnpasta;selectHygiene;0,067Deo;selectHygiene;0,068Rasierklingen;selectHygiene;0,069Rasierschaum;selectHygiene;0,070Taschentücher;selectHygiene;0,071Kindertaschentücher;selectHygiene;0,072Küchenrolle;selectHygiene;0,073Einweghandschuhe;selectHygiene;0,074Toilettenpapier;selectHygiene;0,075Krombacher;selectGetranke;0,076Malzbier;selectGetranke;0,077Misch-Masch;selectGetranke;0,078Fritz-Kola;selectGetranke;0,079Wasser;selectGetranke;0';
+//Public==============
+
 function checkChanged() {
-    // newCheckBox("Butter");
-    // console.log("Text und so.. ne!");
+    //checkbox.value = indexPRODUCT
+    //element in localstorage:indexPRODUCT;class;status
+
+    // console.log("==============================================================");
+    // console.log(this.value);
+
+    let list = getList();
+
+    let product = this.value.substring(3, this.value.length);
+    let rawIndex = this.value.substring(0, 3);
+    let index = parseInt(rawIndex);
+    let status = "";
+
+
+    // console.log(product);
+    // console.log(index);
+    // console.log(list[index]);
+
+    if (this.checked === true) {
+        status = "1";
+    } else {
+        status = "0";
+    }
+
+    list[index] = list[index].substring(0, list[index].length - 1) + status;
+
+    // console.log(list[index]);
+    save(list);
+}
+// ==================================================================================================================================================
+function save(list) {
+    let stringList = "";
+    for (item in list) {
+        stringList += list[item] + ",";
+    }
+    stringList = stringList.substring(0, stringList.length - 1);
+    localStorage.setItem('eslst', stringList);
+    // console.log(getList());
+}
+// ==================================================================================================================================================
+function getList() {
+    let localList = localStorage.getItem('eslst');
+    let tmp = "";
+    let list = [];
+
+    for (let i = 0; i < localList.length; i++) {
+        if (localList[i] == ',') {
+            list.push(tmp);
+            tmp = "";
+        } else {
+            tmp += localList[i];
+        }
+    }
+
+    list.push(tmp);
+    return list;
 }
 // ==================================================================================================================================================
 function switchTo(id) {
@@ -22,40 +80,28 @@ function removeElement() {
 }
 // ==================================================================================================================================================
 function loadList() {
-    let localList = localStorage.getItem('eslst');
-    let tmp = "";
-    let list = [];
-
-    for (let i = 0; i < localList.length; i++) {
-        if (localList[i] == ',') {
-            list.push(tmp);
-            tmp = "";
-        } else {
-            tmp += localList[i];
-        }
-    }
-
-    list.push(tmp);
-
-    console.log(list);
+    list = getList();
+    // console.log(list);
 
     for (const item in list) {
-        let name;
-        let group;
+        //                  name    group   status
+        let properties = ['', '', ''];
+        let index = 0;
         let tmp = "";
 
         for (let i = 0; i < list[item].length; i++) {
             if (list[item][i] === ';') {
-                name = tmp;
+                properties[index] = tmp;
                 tmp = "";
+                index++;
             } else {
                 tmp += list[item][i];
             }
         }
-        group = tmp;
+        properties[index] = tmp;
 
-        // console.log(name + "/" + group);
-        newCheckBox(name, group);
+
+        newCheckBox(properties[0], properties[1], properties[2]);
     }
 }
 // ==================================================================================================================================================
@@ -75,27 +121,31 @@ function newButton(name) {
     document.getElementById("ListParent").appendChild(tr);
 }
 // ==================================================================================================================================================
-function newCheckBox(name, group) {
+function newCheckBox(name, group, status) {
     //<label class="selection"><input type="checkbox" onchange="checkChanged()" value="milch">Milch</label>
     let box = document.createElement("input");
     box.type = "checkBox";
     box.className = "checkBox";
     box.value = name;
     box.addEventListener("change", checkChanged);
+    if (status === "0") {
+        box.checked = false;
+    } else {
+        box.checked = true;
+    }
 
     //<label class="selection"><input type="checkbox" onchange="checkChanged()" value="milch">Milch</label>
     let label = document.createElement("label");
     label.className = "selection";
     label.appendChild(box);
-    let text = document.createTextNode(name);
+    let text = document.createTextNode(name.substring(3, name.length));
     label.appendChild(text);
 
     document.getElementById(group).appendChild(label);
 }
 // ==================================================================================================================================================
 function setup() {
-    let products = 'Obst;selectObstGemuse,Gemüse;selectObstGemuse,Kartoffeln;selectObstGemuse,Salat;selectObstGemuse,Salatkräuter;selectObstGemuse,Zwiebeln;selectObstGemuse,Waschmittel;selectHygiene,Flüssigwaschmittel;selectHygiene,Zahnpasta;selectHygiene,Taschentücher;selectHygiene,Kindertaschentücher;selectHygiene,Küchenrolle;selectHygiene,Toilettenpapier;selectHygiene,Fensterreiniger;selectHygiene,Hygienespüler;selectHygiene,Deo;selectHygiene,Rasierklingen;selectHygiene,Rasierschaum;selectHygiene,Einweghandschuhe;selectHygiene,WC-Reiniger;selectHygiene,Kartoffeltaschen;selectTiefgefroren,Chicken Wings;selectTiefgefroren,Pizza;selectTiefgefroren,Piccolinis;selectTiefgefroren,Milch;selectMilch,Kakaomilch;selectMilch,Sahne;selectMilch,Schmand;selectMilch,Saure Sahne;selectMilch,Quark;selectMilch,Butter;selectMilch,Joghurt;selectMilch,Käsebelag;selectMilch,Soßenkäse;selectMilch,Streuselkäse;selectMilch,Frischkäse Pur;selectMilch,Frischkäse Kräuter;selectMilch,Parmesan;selectMilch,Eis;selectMilch,gezuckerte Kondensmilch;selectMilch,Feta;selectMilch,Müsliriegel;selectBackwaren,Toast;selectBackwaren,Brötchen;selectBackwaren,Tortillas;selectBackwaren,Mehl;selectBackwaren,passierte Tomaten;selectNudeln,Nudeln;selectNudeln,Oliven;selectNudeln,Tomatenmark;selectNudeln,Balsamicocreme;selectNudeln,Ketchup;selectNudeln,Müsli;selectGenuss,Cornflakes;selectGenuss,Marabou;selectGenuss,Kaffeeschokolade;selectGenuss,Kinderschokolade;selectGenuss,Kaffee;selectGenuss,Espresso;selectGenuss,Pudding;selectGenuss,Krombacher;selectGetranke,Malzbier;selectGetranke,Misch-Masch;selectGetranke,Fritz-Kola;selectGetranke,Saft;selectGetranke,Isostar;selectGetranke,Wasser;selectGetranke,Gaskartusche;selectGetranke,Gingerale Sirup;selectGetranke,Orangen Sirup;selectGetranke,Senf;selectSonst,Kaugummis;selectSonst,Karamellsirup;selectSonst,Öl;selectSonst,Wiener;selectSonst,Zucker;selectSonst,Salz;selectSonst,Pfeffer;selectSonst,Paprika;selectSonst,Kloßteig;selectSonst,Avocado;selectObstGemuse,Smoothie Yellow;selectGetranke,Smoothie Purple;selectGetranke'
-    if (localStorage.getItem("eslst") !== products) {
+    if (localStorage.getItem("eslst") === null) {
         localStorage.setItem('eslst', products);
     }
 
@@ -112,7 +162,6 @@ function setup() {
 }
 // ==================================================================================================================================================
 function resetList() {
-    let products = 'Obst;selectObstGemuse,Gemüse;selectObstGemuse,Kartoffeln;selectObstGemuse,Salat;selectObstGemuse,Salatkräuter;selectObstGemuse,Zwiebeln;selectObstGemuse,Waschmittel;selectHygiene,Flüssigwaschmittel;selectHygiene,Zahnpasta;selectHygiene,Taschentücher;selectHygiene,Kindertaschentücher;selectHygiene,Küchenrolle;selectHygiene,Toilettenpapier;selectHygiene,Fensterreiniger;selectHygiene,Hygienespüler;selectHygiene,Deo;selectHygiene,Rasierklingen;selectHygiene,Rasierschaum;selectHygiene,Einweghandschuhe;selectHygiene,WC-Reiniger;selectHygiene,Kartoffeltaschen;selectTiefgefroren,Chicken Wings;selectTiefgefroren,Pizza;selectTiefgefroren,Piccolinis;selectTiefgefroren,Milch;selectMilch,Kakaomilch;selectMilch,Sahne;selectMilch,Schmand;selectMilch,Saure Sahne;selectMilch,Quark;selectMilch,Butter;selectMilch,Joghurt;selectMilch,Käsebelag;selectMilch,Soßenkäse;selectMilch,Streuselkäse;selectMilch,Frischkäse Pur;selectMilch,Frischkäse Kräuter;selectMilch,Parmesan;selectMilch,Eis;selectMilch,gezuckerte Kondensmilch;selectMilch,Feta;selectMilch,Müsliriegel;selectBackwaren,Toast;selectBackwaren,Brötchen;selectBackwaren,Tortillas;selectBackwaren,Mehl;selectBackwaren,passierte Tomaten;selectNudeln,Nudeln;selectNudeln,Oliven;selectNudeln,Tomatenmark;selectNudeln,Balsamicocreme;selectNudeln,Ketchup;selectNudeln,Müsli;selectGenuss,Cornflakes;selectGenuss,Marabou;selectGenuss,Kaffeeschokolade;selectGenuss,Kinderschokolade;selectGenuss,Kaffee;selectGenuss,Espresso;selectGenuss,Pudding;selectGenuss,Krombacher;selectGetranke,Malzbier;selectGetranke,Misch-Masch;selectGetranke,Fritz-Kola;selectGetranke,Saft;selectGetranke,Isostar;selectGetranke,Wasser;selectGetranke,Gaskartusche;selectGetranke,Gingerale Sirup;selectGetranke,Orangen Sirup;selectGetranke,Senf;selectSonst,Kaugummis;selectSonst,Karamellsirup;selectSonst,Öl;selectSonst,Wiener;selectSonst,Zucker;selectSonst,Salz;selectSonst,Pfeffer;selectSonst,Paprika;selectSonst,Kloßteig;selectSonst,Avocado;selectObstGemuse,Smoothie Yellow;selectGetranke,Smoothie Purple;selectGetranke'
     localStorage.setItem('eslst', products);
 }
 // ==================================================================================================================================================
@@ -127,7 +176,7 @@ function generateList() {
 
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].checked === true) {
-            newButton(boxes[i].value);
+            newButton(boxes[i].value.substring(3, boxes[i].length));
         }
     }
 }
@@ -138,7 +187,7 @@ function download(filename) {
     let boxes = document.getElementsByClassName("checkBox");
     for (let i = 0; i < boxes.length; i++) {
         if (boxes[i].checked === true) {
-            text += "<tr><td><button onclick='this.parentElement.parentElement.remove();this.parentElement.remove();this.remove()' class='button'>" + boxes[i].value + "</button></td></tr>";
+            text += "<tr><td><button onclick='this.parentElement.parentElement.remove();this.parentElement.remove();this.remove()' class='button'>" + boxes[i].value.substring(3, boxes[i].length) + "</button></td></tr>";
         }
     }
 
@@ -154,5 +203,6 @@ function download(filename) {
     element.click();
 
     document.body.removeChild(element);
+    alert("Downloaded!");
 }
 //eslst
