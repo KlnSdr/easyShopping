@@ -1,5 +1,5 @@
 //Public==============
-let products = '000Obst;selectObstGemuse;0,001Salatkräuter;selectObstGemuse;0,002Gemüse;selectObstGemuse;0,003Zwiebeln;selectObstGemuse;0,004Kartoffeln;selectObstGemuse;0,005Kloßteig;selectSonst;0,006Salat;selectObstGemuse;0,007Müsli;selectGenuss;0,008Cornflakes;selectGenuss;0,009Marabou;selectGenuss;0,010Kaffeeschokolade;selectGenuss;0,011Kinderschokolade;selectGenuss;0,012gezuckerte Kondensmilch;selectMilch;0,013Kaffee;selectGenuss;0,014Espresso;selectGenuss;0,015Karamellsirup;selectSonst;0,016Müsliriegel;selectBackwaren;0,017Toast;selectBackwaren;0,018Brötchen;selectBackwaren;0,019Pudding;selectGenuss;0,020Salz;selectSonst;0,021Zucker;selectSonst;0,022Mehl;selectBackwaren;0,023passierte Tomaten;selectNudeln;0,024Nudeln;selectNudeln;0,025Tomatenmark;selectNudeln;0,026Oliven;selectNudeln;0,027Senf;selectSonst;0,028Tortillas;selectBackwaren;0,029Balsamicocreme;selectNudeln;0,030Ketchup;selectNudeln;0,031Öl;selectSonst;0,032Paprika;selectSonst;0,033Pfeffer;selectSonst;0,034Wiener;selectSonst;0,035Kartoffeltaschen;selectTiefgefroren;0,036Chicken Wings;selectTiefgefroren;0,037Pizza;selectTiefgefroren;0,038Piccolinis;selectTiefgefroren;0,039Eis;selectMilch;0,040Milch;selectMilch;0,041Kakaomilch;selectMilch;0,042Sahne;selectMilch;0,043Schmand;selectMilch;0,044Saure Sahne;selectMilch;0,045Quark;selectMilch;0,046Butter;selectMilch;0,047Joghurt;selectMilch;0,048Käsebelag;selectMilch;0,049Soßenkäse;selectMilch;0,050Streuselkäse;selectMilch;0,051Feta;selectMilch;0,052Frischkäse Pur;selectMilch;0,053Frischkäse Kräuter;selectMilch;0,054Parmesan;selectMilch;0,055Saft;selectGetranke;0,056Gaskartusche;selectGetranke;0,057Gingerale Sirup;selectGetranke;0,058Orangen Sirup;selectGetranke;0,059Kaugummis;selectSonst;0,060Isostar;selectGetranke;0,061Waschmittel;selectHygiene;0,062WC-Reiniger;selectHygiene;0,063Flüssigwaschmittel;selectHygiene;0,064Fensterreiniger;selectHygiene;0,065Hygienespüler;selectHygiene;0,066Zahnpasta;selectHygiene;0,067Deo;selectHygiene;0,068Rasierklingen;selectHygiene;0,069Rasierschaum;selectHygiene;0,070Taschentücher;selectHygiene;0,071Kindertaschentücher;selectHygiene;0,072Küchenrolle;selectHygiene;0,073Einweghandschuhe;selectHygiene;0,074Toilettenpapier;selectHygiene;0,075Krombacher;selectGetranke;0,076Malzbier;selectGetranke;0,077Misch-Masch;selectGetranke;0,078Fritz-Kola;selectGetranke;0,079Wasser;selectGetranke;0';
+let products = 'Obst;selectObstGemuse;0,Salatkräuter;selectObstGemuse;0,Smoothie Purple;selectGetranke;0,Smoothie Yellow;selectGetranke;0,Avocado;selectObstGemuse;0,Gemüse;selectObstGemuse;0,Zwiebeln;selectObstGemuse;0,Kartoffeln;selectObstGemuse;0,Kloßteig;selectSonst;0,Salat;selectObstGemuse;0,Müsli;selectGenuss;0,Cornflakes;selectGenuss;0,Marabou;selectGenuss;0,Kaffeeschokolade;selectGenuss;0,Kinderschokolade;selectGenuss;0,gezuckerte Kondensmilch;selectMilch;0,Kaffee;selectGenuss;0,Espresso;selectGenuss;0,Karamellsirup;selectSonst;0,Müsliriegel;selectBackwaren;0,Toast;selectBackwaren;0,Brötchen;selectBackwaren;0,Pudding;selectGenuss;0,Salz;selectSonst;0,Zucker;selectSonst;0,Mehl;selectBackwaren;0,passierte Tomaten;selectNudeln;0,Nudeln;selectNudeln;0,Tomatenmark;selectNudeln;0,Oliven;selectNudeln;0,Senf;selectSonst;0,Tortillas;selectBackwaren;0,Balsamicocreme;selectNudeln;0,Ketchup;selectNudeln;0,Öl;selectSonst;0,Paprika;selectSonst;0,Pfeffer;selectSonst;0,Wiener;selectSonst;0,Kartoffeltaschen;selectTiefgefroren;0,Chicken Wings;selectTiefgefroren;0,Pizza;selectTiefgefroren;0,Piccolinis;selectTiefgefroren;0,Eis;selectMilch;0,Milch;selectMilch;0,Kakaomilch;selectMilch;0,Sahne;selectMilch;0,Schmand;selectMilch;0,Saure Sahne;selectMilch;0,Quark;selectMilch;0,Butter;selectMilch;0,Joghurt;selectMilch;0,Käsebelag;selectMilch;0,Soßenkäse;selectMilch;0,Streuselkäse;selectMilch;0,Feta;selectMilch;0,Frischkäse Pur;selectMilch;0,Frischkäse Kräuter;selectMilch;0,Parmesan;selectMilch;0,Saft;selectGetranke;0,Gaskartusche;selectGetranke;0,Gingerale Sirup;selectGetranke;0,Orangen Sirup;selectGetranke;0,Kaugummis;selectSonst;0,Isostar;selectGetranke;0,Waschmittel;selectHygiene;0,WC-Reiniger;selectHygiene;0,Flüssigwaschmittel;selectHygiene;0,Fensterreiniger;selectHygiene;0,Hygienespüler;selectHygiene;0,Zahnpasta;selectHygiene;0,Deo;selectHygiene;0,Rasierklingen;selectHygiene;0,Rasierschaum;selectHygiene;0,Taschentücher;selectHygiene;0,Kindertaschentücher;selectHygiene;0,Küchenrolle;selectHygiene;0,Einweghandschuhe;selectHygiene;0,Toilettenpapier;selectHygiene;0,Krombacher;selectGetranke;0,Malzbier;selectGetranke;0,Misch-Masch;selectGetranke;0,Fritz-Kola;selectGetranke;0,Wasser;selectGetranke;0';
 //Public==============
 
 function checkChanged() {
@@ -11,9 +11,19 @@ function checkChanged() {
 
     let list = getList();
 
-    let product = this.value.substring(3, this.value.length);
-    let rawIndex = this.value.substring(0, 3);
-    let index = parseInt(rawIndex);
+    let product = this.value;
+
+    let index = "";
+
+    for (i in product) {
+        if (product[i] === ";") {
+            break;
+        } else {
+            index += product[i];
+        }
+    }
+    index = parseInt(index);
+
     let status = "";
 
 
@@ -85,9 +95,11 @@ function loadList() {
 
     for (const item in list) {
         //                  name    group   status
-        let properties = ['', '', ''];
-        let index = 0;
+        let properties = ['', '', '', ''];
+        let index = 1;
         let tmp = "";
+
+        properties[0] = item;
 
         for (let i = 0; i < list[item].length; i++) {
             if (list[item][i] === ';') {
@@ -101,7 +113,7 @@ function loadList() {
         properties[index] = tmp;
 
 
-        newCheckBox(properties[0], properties[1], properties[2]);
+        newCheckBox(properties[1], properties[2], properties[3], properties[0], list[item].substring(0, list[item].length - 2));
     }
 }
 // ==================================================================================================================================================
@@ -121,12 +133,13 @@ function newButton(name) {
     document.getElementById("ListParent").appendChild(tr);
 }
 // ==================================================================================================================================================
-function newCheckBox(name, group, status) {
+function newCheckBox(name, group, status, index, rawText) {
     //<label class="selection"><input type="checkbox" onchange="checkChanged()" value="milch">Milch</label>
     let box = document.createElement("input");
     box.type = "checkBox";
     box.className = "checkBox";
-    box.value = name;
+    box.value = index + ";" + name;
+    box.id = rawText;
     box.addEventListener("change", checkChanged);
     if (status === "0") {
         box.checked = false;
@@ -138,7 +151,7 @@ function newCheckBox(name, group, status) {
     let label = document.createElement("label");
     label.className = "selection";
     label.appendChild(box);
-    let text = document.createTextNode(name.substring(3, name.length));
+    let text = document.createTextNode(name);
     label.appendChild(text);
 
     document.getElementById(group).appendChild(label);
@@ -163,6 +176,41 @@ function setup() {
 // ==================================================================================================================================================
 function resetList() {
     localStorage.setItem('eslst', products);
+
+    let list = document.getElementsByClassName("checkBox");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
+
+    list = document.getElementsByClassName("selection");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
+
+    loadList();
+}
+// ==================================================================================================================================================
+function clearList() {
+    let eslst = getList();
+
+    for (item in eslst) {
+        let len = eslst[item].length;
+        eslst[item] = eslst[item].substring(0, len - 1) + "0";
+    }
+
+    save(eslst);
+
+    let list = document.getElementsByClassName("checkBox");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
+
+    list = document.getElementsByClassName("selection");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
+
+    loadList();
 }
 // ==================================================================================================================================================
 function generateList() {
@@ -172,11 +220,27 @@ function generateList() {
         list[i].parentElement.parentElement.remove();
     }
 
-    let boxes = document.getElementsByClassName("checkBox");
+    let boxes = getList();
 
     for (let i = 0; i < boxes.length; i++) {
-        if (boxes[i].checked === true) {
-            newButton(boxes[i].value.substring(3, boxes[i].length));
+        let current = document.getElementById(boxes[i].substring(0, boxes[i].length - 2));
+        if (current.checked === true) {
+            let text = current.value;
+            let boolean = false;
+            let tmp = "";
+
+            for (j in text) {
+                if (boolean === true) {
+                    tmp += text[j];
+                } else {
+                    if (text[j] === ';') {
+                        boolean = true;
+                    }
+                }
+            }
+            text = tmp;
+
+            newButton(text);
         }
     }
 }
@@ -184,11 +248,27 @@ function generateList() {
 function download(filename) {
     let text = '<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Einkaufszettel</title><style>html,body {font-family: "Arial";background-color: black;height: 100%;margin: 0px;padding: 0px;}table {width: calc(100% - 10px);/* border-spacing: 5px; */}.button {display: block;width: 100%;height: 50px;/* margin-top: 2.5px; */border: 0;border-radius: 5px;text-decoration: none;background-color: rgb(0, 51, 192);color: white;font-size: large;margin-left: 5px;}.header {color: white;font-size: 27px;display: block;width: 100%;text-align: center;padding-top: 15px;padding-bottom: 15px;}</style></head><body><label class="header">Einkaufszettel</label><table>';
 
-    let boxes = document.getElementsByClassName("checkBox");
+    let boxes = getList();
+
     for (let i = 0; i < boxes.length; i++) {
-        if (boxes[i].checked === true) {
-            text += "<tr><td><button onclick='this.parentElement.parentElement.remove();this.parentElement.remove();this.remove()' class='button'>" + boxes[i].value.substring(3, boxes[i].length) + "</button></td></tr>";
+        let current = document.getElementById(boxes[i].substring(0, boxes[i].length - 2));
+        if (current.checked === true) {
+            let innerText = "";
+            let boolean = false;
+
+            for (j in current.value) {
+                if (boolean === true) {
+                    innerText += current.value[j];
+                } else {
+                    if (current.value[j] === ";") {
+                        boolean = true;
+                    }
+                }
+            }
+
+            text += "<tr><td><button onclick='this.parentElement.parentElement.remove();this.parentElement.remove();this.remove()' class='button'>" + innerText + "</button></td></tr>";
         }
+
     }
 
     text += '</table></body></html>'
