@@ -94,7 +94,6 @@ function loadList() {
     // console.log(list);
 
     for (const item in list) {
-        //                  name    group   status
         let properties = ['', '', '', ''];
         let index = 1;
         let tmp = "";
@@ -211,6 +210,22 @@ function clearList() {
     }
 
     loadList();
+}
+// ==================================================================================================================================================
+function addCustom() {
+    let val = document.getElementById("inCustom").value;
+    if (val != "" && val != null) {
+        let prod = val;
+        prod += ";customProducts"
+        let list = getList();
+        list.push(prod + ";1");
+        save(list);
+
+        //name,                                     group,          status, index,      rawText
+        newCheckBox(document.getElementById("inCustom").value, "customProducts", "1", list.length - 1, prod);
+        //===============================================================
+        document.getElementById("inCustom").value = "";
+    }
 }
 // ==================================================================================================================================================
 function generateList() {

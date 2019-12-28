@@ -61,7 +61,7 @@
                     <button class="button" onclick="switchTo('selectSonst')">Sonstiges</button>
                 </td>
                 <td>
-                    <button class="button" onclick="switchTo('selectList'); generateList();">Liste erstellen</button>
+                    <button class="button" onclick="switchTo('selectSelf');">Eigene</button>
                 </td>
             </tr>
         </table>
@@ -103,6 +103,24 @@
         <label class="header">Sonstiges</label>
     </div>
     <!-- ========================================================================================================================================== -->
+    <div id="selectSelf" class="container">
+        <label class="header">Eigene</label>
+        <table>
+            <tr>
+                <td>
+                    <input id="inCustom" type="text" class="input">
+                </td>
+                <td>
+                    <button onclick="addCustom()" class="fa fa-save button"
+                        style="font-size: 19px; height: 28px;"></button>
+                </td>
+            </tr>
+            <tr id="customProducts">
+
+            </tr>
+        </table>
+    </div>
+    <!-- ========================================================================================================================================== -->
     <div id="selectList" class="container">
         <label class="header">Einkaufszettel</label>
         <table id="ListParent">
@@ -117,7 +135,7 @@
                     <!-- reset list -->
                     <button class="button fa fa-undo" onclick="resetList()"></button>
                 </td>
-                
+
                 <td>
                     <!-- clear list -->
                     <button class="button fa fa-trash" onclick="clearList()"></button>

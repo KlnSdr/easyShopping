@@ -111,3 +111,12 @@ table {
     align-items: center;
     text-align: center;
 }
+
+.input {
+    border-radius: 5px;
+    width: 100%;
+    font-size: 19px;
+    height: auto;
+    outline: none;
+    margin-left: 5px;
+}
