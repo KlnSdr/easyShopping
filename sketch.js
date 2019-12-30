@@ -228,6 +228,76 @@ function addCustom() {
     }
 }
 // ==================================================================================================================================================
+function shareList() {
+    let boxes = getList();
+    let text = "";
+
+    for (let i = 0; i < boxes.length; i++) {
+        let current = document.getElementById(boxes[i].substring(0, boxes[i].length - 2));
+        if (boxes[i].includes("customProducts") === false) {
+            if (current.checked === true) {
+                text += "1;";
+            } else {
+                text += "0;";
+            }
+        }
+    }
+
+    if (text.length > 0) {
+        text = text.substring(0, text.length - 1);
+        let element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', "Einkaufszettel.eslst");
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+        alert("Downloaded!");
+    }
+}
+// ==================================================================================================================================================
+function openList(text) {
+    let list = getList();
+    let zettel = [];
+
+    for (let i = 0; i < text.length; i++) {
+        if (i % 2 === 0) {
+            zettel.push(text[i]);
+        }
+    }
+
+    for (let i = 0; i < zettel.length; i++) {
+        list[i] = list[i].substring(0, list[i].length - 1) + zettel[i];
+    }
+
+    save(list);
+
+    list = document.getElementsByClassName("checkBox");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
+
+    list = document.getElementsByClassName("selection");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
+
+    loadList();
+}
+
+function openFile(event) {
+    let input = event.target;
+    let reader = new FileReader();
+    reader.onload = function () {
+        let text = reader.result;
+        openList(text);
+    };
+    reader.readAsText(input.files[0]);
+}
+// ==================================================================================================================================================
 function generateList() {
 
     let list = document.getElementsByClassName("ListButton");
