@@ -170,7 +170,13 @@ function setup() {
     let menu = document.getElementById("menu");
     menu.style.visibility = "visible";
     menu.style.display = "block";
-    loadList();
+
+    let param = GetURLParameter("lst");
+    if (param !== undefined) {
+        openList(atob(param));
+    } else {
+        loadList();
+    }
 }
 // ==================================================================================================================================================
 function resetList() {
@@ -245,17 +251,19 @@ function shareList() {
 
     if (text.length > 0) {
         text = text.substring(0, text.length - 1);
-        let element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', "Einkaufszettel.eslst");
-
-        element.style.display = 'none';
-        document.body.appendChild(element);
-
-        element.click();
-
-        document.body.removeChild(element);
-        alert("Downloaded!");
+        text = "https://KlnSdr.github.io/easyShopping?lst=" + btoa(text);
+        sendWhatsApp(text);
+    }
+}
+// ==================================================================================================================================================
+function GetURLParameter(sParam) {
+    let sPageURL = window.location.search.substring(1);
+    let sURLVariables = sPageURL.split('&');
+    for (let i = 0; i < sURLVariables.length; i++) {
+        let sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1];
+        }
     }
 }
 // ==================================================================================================================================================
@@ -287,15 +295,9 @@ function openList(text) {
 
     loadList();
 }
-
-function openFile(event) {
-    let input = event.target;
-    let reader = new FileReader();
-    reader.onload = function () {
-        let text = reader.result;
-        openList(text);
-    };
-    reader.readAsText(input.files[0]);
+// ==================================================================================================================================================
+function sendWhatsApp(message) {
+    window.location = "whatsapp://send?text=" + message.replace(" ", "%20");
 }
 // ==================================================================================================================================================
 function generateList() {
