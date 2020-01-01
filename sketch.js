@@ -251,9 +251,50 @@ function shareList() {
 
     if (text.length > 0) {
         text = text.substring(0, text.length - 1);
+        text = compress(text);
         text = "https://KlnSdr.github.io/easyShopping?lst=" + btoa(text);
         sendWhatsApp(text);
     }
+}
+
+function compress(list) {
+    let tmp = []
+    let temp = "";
+
+    for (i in list) {
+        if (list[i] !== ";") {
+            temp += list[i];
+        } else {
+            tmp.push(temp);
+        }
+    }
+
+    list = temp;
+
+
+    let zip = ""
+    let prev = list[0];
+    let count = 1;
+
+    for (let i = 1; i < list.length; i++) {
+        let element = list[i];
+
+        if (element === prev) {
+            count += 1;
+        } else {
+            if (count === 1) {
+                zip += prev + ";";
+            } else {
+                zip += String.fromCharCode(count + 64) + prev + ";";
+            }
+            count = 1;
+            prev = element;
+        }
+    }
+
+    zip += String.fromCharCode(count + 64) + prev;
+
+    return zip;
 }
 // ==================================================================================================================================================
 function GetURLParameter(sParam) {
@@ -271,13 +312,15 @@ function openList(text) {
     let list = getList();
     let zettel = [];
 
+    text = extract(text);
+
     for (let i = 0; i < text.length; i++) {
         if (i % 2 === 0) {
             zettel.push(text[i]);
         }
     }
 
-    for (let i = 0; i < zettel.length; i++) {
+    for (i in zettel) {
         list[i] = list[i].substring(0, list[i].length - 1) + zettel[i];
     }
 
@@ -295,9 +338,44 @@ function openList(text) {
 
     loadList();
 }
+
+function extract(zip) {
+    let list = "";
+
+    let tmp = ""
+    let Zettel = []
+
+    for (i in zip) {
+        if (zip[i] === ';') {
+            Zettel.push(tmp);
+            tmp = "";
+        } else {
+            tmp += zip[i];
+        }
+    }
+    Zettel.push(tmp);
+
+    for (i in Zettel) {
+        if (Zettel[i].length === 1) {
+            list += Zettel[i] + ";";
+        } else {
+            let Anzahl = Zettel[i][0].charCodeAt(0) - 64;
+            let status = Zettel[i][1];
+            for (let j = 0; j < Anzahl; j++) {
+                list += status + ";";
+            }
+        }
+    }
+
+    if (list[list.length - 1] === ";") {
+        list = list.substring(0, list.length - 1);
+    }
+
+    return list;
+}
 // ==================================================================================================================================================
 function sendWhatsApp(message) {
-    window.location = "whatsapp://send?text=" + message.replace(" ", "%20");
+    window.location = "whatsapp://send?text=" + message;
 }
 // ==================================================================================================================================================
 function generateList() {
