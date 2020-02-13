@@ -17,151 +17,153 @@
 </head>
 
 <body onload="setup()">
-    <div id="menu" class="container">
-        <label class="header">easyShopping</label>
+    <div class="content">
+        <div id="menu" class="container">
+            <label class="header">easyShopping</label>
 
-        <table>
-            <tr>
-                <td>
-                    <button class="button" onclick="switchTo('selectObstGemuse')">Obst&Gemüse</button>
-                </td>
-                <td>
-                    <button class="button" onclick="switchTo('selectHygiene')">Hygiene</button>
-                </td>
-            </tr>
+            <table>
+                <tr>
+                    <td>
+                        <button class="button" onclick="switchTo('selectObstGemuse')">Obst&Gemüse</button>
+                    </td>
+                    <td>
+                        <button class="button" onclick="switchTo('selectHygiene')">Hygiene</button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>
-                    <button class="button" onclick="switchTo('selectTiefgefroren')">Tiefgefroren</button>
-                </td>
-                <td>
-                    <button class="button" onclick="switchTo('selectMilch')">Milchprodukte</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <button class="button" onclick="switchTo('selectTiefgefroren')">Tiefgefroren</button>
+                    </td>
+                    <td>
+                        <button class="button" onclick="switchTo('selectMilch')">Milchprodukte</button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>
-                    <button class="button" onclick="switchTo('selectBackwaren')">Backwaren</button>
-                </td>
-                <td>
-                    <button class="button" onclick="switchTo('selectNudeln')">Nudeln</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <button class="button" onclick="switchTo('selectBackwaren')">Backwaren</button>
+                    </td>
+                    <td>
+                        <button class="button" onclick="switchTo('selectNudeln')">Nudeln</button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>
-                    <button class="button" onclick="switchTo('selectGenuss')">Genussmittel</button>
-                </td>
-                <td>
-                    <button class="button" onclick="switchTo('selectGetranke')">Getränke</button>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <button class="button" onclick="switchTo('selectGenuss')">Genussmittel</button>
+                    </td>
+                    <td>
+                        <button class="button" onclick="switchTo('selectGetranke')">Getränke</button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>
-                    <button class="button" onclick="switchTo('selectSonst')">Sonstiges</button>
-                </td>
-                <td>
-                    <button class="button" onclick="switchTo('selectSelf');">Eigene</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectObstGemuse" class="container">
-        <label class="header">Obst&Gemüse</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectHygiene" class="container">
-        <label class="header">Hygiene</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectTiefgefroren" class="container">
-        <label class="header">Tiefgefroren</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectMilch" class="container">
-        <label class="header">Milchprodukte</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectBackwaren" class="container">
-        <label class="header">Backwaren</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectNudeln" class="container">
-        <label class="header">Nudeln</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectGenuss" class="container">
-        <label class="header">Genussmittel</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectGetranke" class="container">
-        <label class="header">Getränke</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectSonst" class="container">
-        <label class="header">Sonstiges</label>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectSelf" class="container">
-        <label class="header">Eigene</label>
-        <table>
-            <tr>
-                <td>
-                    <input id="inCustom" type="text" class="input">
-                </td>
-                <td>
-                    <button onclick="addCustom()" class="fa fa-save button"
-                        style="font-size: 19px; height: 28px; text-align: center;"></button>
-                </td>
-            </tr>
-            <tr id="customProducts">
+                <tr>
+                    <td>
+                        <button class="button" onclick="switchTo('selectSonst')">Sonstiges</button>
+                    </td>
+                    <td>
+                        <button class="button" onclick="switchTo('selectSelf');">Eigene</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectObstGemuse" class="container">
+            <label class="header">Obst&Gemüse</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectHygiene" class="container">
+            <label class="header">Hygiene</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectTiefgefroren" class="container">
+            <label class="header">Tiefgefroren</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectMilch" class="container">
+            <label class="header">Milchprodukte</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectBackwaren" class="container">
+            <label class="header">Backwaren</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectNudeln" class="container">
+            <label class="header">Nudeln</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectGenuss" class="container">
+            <label class="header">Genussmittel</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectGetranke" class="container">
+            <label class="header">Getränke</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectSonst" class="container">
+            <label class="header">Sonstiges</label>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectSelf" class="container">
+            <label class="header">Eigene</label>
+            <table>
+                <tr>
+                    <td>
+                        <input id="inCustom" type="text" class="input">
+                    </td>
+                    <td>
+                        <button onclick="addCustom()" class="fa fa-save button"
+                            style="font-size: 19px; height: 28px; text-align: center;"></button>
+                    </td>
+                </tr>
+                <tr id="customProducts">
 
-            </tr>
-        </table>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="selectList" class="container">
-        <label class="header">Einkaufszettel</label>
-        <table id="ListParent">
-        </table>
-    </div>
-    <!-- ========================================================================================================================================== -->
-    <div id="settings" class="container">
-        <label class="header">Settings</label>
-        <table>
-            <tr>
-                <td>
-                    <!-- reset list -->
-                    <button class="button fa fa-undo" onclick="resetList()"></button>
-                </td>
+                </tr>
+            </table>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="selectList" class="container">
+            <label class="header">Einkaufszettel</label>
+            <table id="ListParent">
+            </table>
+        </div>
+        <!-- ========================================================================================================================================== -->
+        <div id="settings" class="container">
+            <label class="header">Settings</label>
+            <table>
+                <tr>
+                    <td>
+                        <!-- reset list -->
+                        <button class="button fa fa-undo" onclick="resetList()"></button>
+                    </td>
 
-                <td>
-                    <!-- clear list -->
-                    <button class="button fa fa-trash" onclick="clearList()"></button>
-                </td>
+                    <td>
+                        <!-- clear list -->
+                        <button class="button fa fa-trash" onclick="clearList()"></button>
+                    </td>
 
-                <td>
-                    <!-- download list -->
-                    <button class="button fa fa-download" onclick="download('Einkaufszettel.html')"></button>
-                </td>
+                    <td>
+                        <!-- download list -->
+                        <button class="button fa fa-download" onclick="download('Einkaufszettel.html')"></button>
+                    </td>
 
-                <td>
-                    <!-- share list -->
-                    <button class="button fa fa-share" onclick="shareList()"></button>
-                </td>
-            </tr>
-        </table>
-        <p>v1.1.17</p>
-    </div>
+                    <td>
+                        <!-- share list -->
+                        <button class="button fa fa-share" onclick="shareList()"></button>
+                    </td>
+                </tr>
+            </table>
+            <p>v1.1.17</p>
+        </div>
 
-    <!-- ========================================================================================================================================== -->
+        <!-- ========================================================================================================================================== -->
 
-    <div class="bottomMenu aligner">
-        <button class="fa fa-list menuButton" onclick="switchTo('selectList'); generateList();"></button>
-        <button class="fa fa-home menuButton" onclick="switchTo('menu')"></button>
-        <button class="fa fa-cog menuButton" onclick="switchTo('settings')"></button>
+        <div class="bottomMenu aligner">
+            <button class="fa fa-list menuButton" onclick="switchTo('selectList'); generateList();"></button>
+            <button class="fa fa-home menuButton" onclick="switchTo('menu')"></button>
+            <button class="fa fa-cog menuButton" onclick="switchTo('settings')"></button>
+        </div>
     </div>
 </body>
 
