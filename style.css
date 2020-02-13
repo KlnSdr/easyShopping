@@ -1,3 +1,9 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 html,
 body {
     font-family: 'Arial';
@@ -36,12 +42,15 @@ table {
 
 .header {
     color: white;
+    background-color: black;
     font-size: 27px;
     display: block;
     width: 100%;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
+    position: sticky;
+    top: 0;
 }
 
 .grid-container {
@@ -84,6 +93,7 @@ table {
     vertical-align: middle;
 
     height: 25px;
+    width: 25%;
     position: relative;
     top: 25%;
     bottom: 25%;
