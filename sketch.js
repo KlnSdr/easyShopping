@@ -337,8 +337,6 @@ function openList(text) {
     }
 
     loadList();
-
-    window.location = window.location.hostname;
 }
 
 function extract(zip) {
