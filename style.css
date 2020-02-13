@@ -39,7 +39,7 @@ table {
     border-radius: 5px;
     text-decoration: none;
     background-color: rgb(0, 51, 192);
-    color: black;
+    color: white;
     font-size: large;
     margin-left: 5px;
 }
@@ -54,12 +54,15 @@ table {
 
 .header {
     color: white;
+    background-color: black;
     font-size: 27px;
     display: block;
     width: 100%;
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
+    position: sticky;
+    top: 0;
 }
 
 .grid-container {
