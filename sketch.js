@@ -235,7 +235,6 @@ function addCustom() {
 }
 // ==================================================================================================================================================
 function shareList() {
-/*
     let boxes = getList();
     let text = "";
 
@@ -256,8 +255,6 @@ function shareList() {
         text = "https://KlnSdr.github.io/easyShopping?lst=" + btoa(text);
         sendWhatsApp(text);
     }
-*/
-sendWhatsApp(getList());
 }
 
 function compress(list) {
