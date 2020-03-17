@@ -273,9 +273,8 @@ function shareList() {
     }
     text = encodeURI(text);
     text = "https://KlnSdr.github.io/easyShopping?lst=" + text;
-    console.log(text);
 
-    // sendWhatsApp(text);
+    sendWhatsApp(text);
 }
 
 function replaceUmlauts(text, encode) {
