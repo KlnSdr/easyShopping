@@ -271,21 +271,20 @@ function shareList() {
     if (text.length > 0) {
         text = text.substring(0, text.length - 1);
     }
+
     text = encodeURI(text);
+    text = replaceSpaces(text, true);
     text = "https://KlnSdr.github.io/easyShopping?lst=" + text;
 
     sendWhatsApp(text);
+    console.log(text);
 }
 
-function replaceUmlauts(text, encode) {
+function replaceSpaces(text, encode) {
     if (encode) {
-        for (let i = 0; i < text.length; i++) {
-            if (text[i].toLowerCase() == 'ä') {
-                console.log("a");
-            }
-        }
+        text = text.split(' ').join('+');
     } else {
-
+        text = text.split('+').join(' ');
     }
     return text;
 }
