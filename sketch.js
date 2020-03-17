@@ -40,21 +40,17 @@ function checkChanged() {
     list[index] = list[index].substring(0, list[index].length - 1) + status;
 
     // console.log(list[index]);
-    save(list, false);
+    save(list);
 }
 // ==================================================================================================================================================
-function save(list, isRawText) {
-    if (isRawText) {
-        localStorage.setItem('eslst', list);
-    } else {
-        let stringList = "";
-        for (item in list) {
-            stringList += list[item] + ",";
-        }
-        stringList = stringList.substring(0, stringList.length - 1);
-        localStorage.setItem('eslst', stringList);
-        // console.log(getList());
+function save(list) {
+    let stringList = "";
+    for (item in list) {
+        stringList += list[item] + ",";
     }
+    stringList = stringList.substring(0, stringList.length - 1);
+    localStorage.setItem('eslst', stringList);
+    // console.log(getList());
 }
 // ==================================================================================================================================================
 function getList() {
@@ -177,8 +173,7 @@ function setup() {
 
     let param = GetURLParameter("lst");
     if (param !== undefined) {
-        // openList(atob(param));
-        openList(param);
+        openList(atob(param));
     } else {
         loadList();
     }
@@ -208,7 +203,7 @@ function clearList() {
         eslst[item] = eslst[item].substring(0, len - 1) + "0";
     }
 
-    save(eslst, false);
+    save(eslst);
 
     let list = document.getElementsByClassName("checkBox");
     for (let i = list.length - 1; 0 <= i; i--) {
@@ -230,7 +225,7 @@ function addCustom() {
         prod += ";customProducts"
         let list = getList();
         list.push(prod + ";1");
-        save(list, false);
+        save(list);
 
         //name,                                     group,          status, index,      rawText
         newCheckBox(document.getElementById("inCustom").value, "customProducts", "1", list.length - 1, prod);
@@ -240,56 +235,28 @@ function addCustom() {
 }
 // ==================================================================================================================================================
 function shareList() {
-    //keep for later
-    // let boxes = getList();
-    // let text = "";
-
-    // for (let i = 0; i < boxes.length; i++) {
-    //     let current = document.getElementById(boxes[i].substring(0, boxes[i].length - 2));
-    //     if (boxes[i].includes("customProducts") === false) {
-    //         if (current.checked === true) {
-    //             text += "1;";
-    //         } else {
-    //             text += "0;";
-    //         }
-    //     }
-    // }
-
-    // if (text.length > 0) {
-    //     text = text.substring(0, text.length - 1);
-    //     // text = compress(text);
-    //     text = "https://KlnSdr.github.io/easyShopping?lst=" + btoa(text);
-    //     sendWhatsApp(text);
-    // }
-    let text = "";
     let boxes = getList();
+    let text = "";
 
     for (let i = 0; i < boxes.length; i++) {
-        text += boxes[i] + ",";
+        let current = document.getElementById(boxes[i].substring(0, boxes[i].length - 2));
+        if (boxes[i].includes("customProducts") === false) {
+            if (current.checked === true) {
+                text += "1;";
+            } else {
+                text += "0;";
+            }
+        }
     }
 
     if (text.length > 0) {
         text = text.substring(0, text.length - 1);
+        text = compress(text);
+        text = "https://KlnSdr.github.io/easyShopping?lst=" + btoa(text);
+        sendWhatsApp(text);
     }
-
-    text = encodeURI(text);
-    text = replaceSpaces(text, true);
-    text = "https://KlnSdr.github.io/easyShopping?lst=" + text;
-
-    sendWhatsApp(text);
-    console.log(text);
 }
 
-function replaceSpaces(text, encode) {
-    if (encode) {
-        text = text.split(' ').join('+');
-    } else {
-        text = text.split('+').join(' ');
-    }
-    return text;
-}
-
-//keep for later
 function compress(list) {
     let tmp = []
     let temp = "";
@@ -342,40 +309,36 @@ function GetURLParameter(sParam) {
 }
 // ==================================================================================================================================================
 function openList(text) {
-    // let list = getList();
-    // let zettel = [];
+    let list = getList();
+    let zettel = [];
 
-    // // text = extract(text);
+    text = extract(text);
 
-    // for (let i = 0; i < text.length; i++) {
-    //     if (i % 2 === 0) {
-    //         zettel.push(text[i]);
-    //     }
-    // }
+    for (let i = 0; i < text.length; i++) {
+        if (i % 2 === 0) {
+            zettel.push(text[i]);
+        }
+    }
 
-    // for (i in zettel) {
-    //     list[i] = list[i].substring(0, list[i].length - 1) + zettel[i];
-    // }
+    for (i in zettel) {
+        list[i] = list[i].substring(0, list[i].length - 1) + zettel[i];
+    }
 
-    // save(list), false;
+    save(list);
 
-    // list = document.getElementsByClassName("checkBox");
-    // for (let i = list.length - 1; 0 <= i; i--) {
-    //     list[i].remove();
-    // }
+    list = document.getElementsByClassName("checkBox");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
 
-    // list = document.getElementsByClassName("selection");
-    // for (let i = list.length - 1; 0 <= i; i--) {
-    //     list[i].remove();
-    // }
+    list = document.getElementsByClassName("selection");
+    for (let i = list.length - 1; 0 <= i; i--) {
+        list[i].remove();
+    }
 
-    // loadList();
-
-    save(decodeURI(text), true);
     loadList();
 }
 
-//keep for later
 function extract(zip) {
     let list = "";
 
