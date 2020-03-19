@@ -127,7 +127,7 @@ function newButton(name) {
     let button = document.createElement("button");
     button.addEventListener("click", removeElement);
     button.className = "ListButton button";
-    let text = document.createTextNode(name);
+    let text = document.createTextNode(name.replace('+', ' '));
     button.appendChild(text);
 
     td.appendChild(button);
@@ -154,7 +154,7 @@ function newCheckBox(name, group, status, index, rawText) {
     let label = document.createElement("label");
     label.className = "selection";
     label.appendChild(box);
-    let text = document.createTextNode(name);
+    let text = document.createTextNode(name.replace('+', ' '));
     label.appendChild(text);
 
     document.getElementById(group).appendChild(label);
