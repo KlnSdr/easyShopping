@@ -272,21 +272,9 @@ function shareList() {
         text = text.substring(0, text.length - 1);
     }
 
-    text = replaceSpaces(text, true);
-    text = "https://KlnSdr.github.io/easyShopping?lst=" + text;
+    text = "https://KlnSdr.github.io/easyShopping?lst=" + text
 
-    // alert(text);
-    console.log(text);
     sendWhatsApp(encodeURIComponent(text));
-}
-
-function replaceSpaces(text, encode) {
-    if (encode) {
-        text = text.split(' ').join('+');
-    } else {
-        text = text.split('+').join(' ');
-    }
-    return text;
 }
 
 //keep for later
@@ -372,7 +360,7 @@ function openList(text) {
     // loadList();
 
     save(decodeURIComponent(text), true);
-    loadList();
+    window.location = "https://KlnSdr.github.io/easyShopping";
 }
 
 //keep for later
