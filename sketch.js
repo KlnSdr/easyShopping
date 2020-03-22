@@ -227,15 +227,16 @@ function addCustom() {
     let val = document.getElementById("inCustom").value;
     if (val != "" && val != null) {
         let prod = val;
-        prod += ";customProducts"
+        prod += ";" + currentClass
         let list = getList();
         list.push(prod + ";1");
-        save(list, false);
+        save(list);
 
-        //name,                                     group,          status, index,      rawText
-        newCheckBox(document.getElementById("inCustom").value, "customProducts", "1", list.length - 1, prod);
+        //          name,group,          status, index,      rawText
+        newCheckBox(val, currentClass, "1", list.length - 1, prod);
         //===============================================================
         document.getElementById("inCustom").value = "";
+        document.getElementById('inCustom').focus();
     }
 }
 // ==================================================================================================================================================
@@ -433,6 +434,23 @@ function generateList() {
             newButton(text);
         }
     }
+}
+// ==================================================================================================================================================
+function toggleDD() {
+    let dd = document.getElementById('dropdown');
+    if (dd.style.display === 'none') {
+        dd.style.display = 'block';
+    } else {
+        dd.style.display = 'none';
+    }
+}
+// ========================================================================================================================================
+let currentClass = "selectSelf";
+
+function otherClass() {
+    document.getElementById('current').innerText = event.target.parentElement.innerText;
+    currentClass = event.target.id;
+    toggleDD();
 }
 // ==================================================================================================================================================
 function download(filename) {
