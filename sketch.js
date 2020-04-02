@@ -269,11 +269,8 @@ function shareList() {
         text += boxes[i] + ",";
     }
 
-    if (text.length > 0) {
-        text = text.substring(0, text.length - 1);
-    }
+    text = text.substring(0, text.length - 1);
 
-    text = encodeURIComponent(text);
     text = "https://KlnSdr.github.io/easyShopping?lst=" + text
 
     sendWhatsApp(text);
@@ -403,6 +400,7 @@ function extract(zip) {
 // ==================================================================================================================================================
 function sendWhatsApp(message) {
     window.location = "whatsapp://send?text=" + encodeURIComponent(message);
+    // console.log("whatsapp://send?text=" + encodeURIComponent(message));
 }
 // ==================================================================================================================================================
 function generateList() {
