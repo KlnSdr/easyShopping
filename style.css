@@ -1,167 +1,129 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-*:focus {
-    outline: none;
-}
-
-html,
-body {
-    font-family: 'Arial';
-    background-color: black;
-    color: white;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-}
-
-
-.content {
-    overflow-x: hidden;
-    position: relative;
-    height: 100%;
-}
-
-table {
-    width: calc(100% - 10px);
-    /* border-spacing: 5px; */
-}
-
-.button {
-    display: block;
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
     width: 100%;
-    height: 50px;
-    /* margin-top: 2.5px; */
-    border: 0;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     border-radius: 5px;
-    text-decoration: none;
-    background-color: rgb(0, 51, 192);
-    color: white;
-    font-size: large;
-    margin-left: 5px;
 }
 
-.container {
-    padding: 0px;
-    margin: 0px;
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    border-radius: 5px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: rgb(0, 51, 192);
+    color: rgb(0, 51, 192);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.modal-body {
+    padding: 16px 8px;
+    color: black;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.dialogButton {
+    width: 100%;
+    display: inline-block;
+    height: 25px;
+}
+
+.dialogInput {
+    font-size: large;
+    width: 100%;
+    color: black;
+}
+
+.dialogInputContainer {
+    padding: 16px;
+    padding-bottom: 8px;
+}
+
+.show {
+    visibility: visible;
+    display: block;
+}
+
+.hide {
     visibility: collapse;
     display: none;
-    margin-bottom: 50px;
 }
 
-.header {
-    color: white;
-    background-color: black;
-    font-size: 27px;
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    position: sticky;
-    top: 0;
+.removeButton {
+    width: 10%;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 10px;
-}
-
-.grid-item {
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
-}
-
-.selection {
-    color: white;
-    display: block;
-    font-size: 19px;
-    padding-top: 5px;
-    margin-left: 5px;
-}
-
-.checkBox {
-    /*Hier sollte etwas sein, aber ich mache das nur, um alle checkboxen zu bekommen*/
-}
-
-.ListButton {
-    /*Hier sollte etwas sein, aber ich mache das nur, um alle ListButtons zu bekommen*/
-}
-
-.menuButton {
-    text-decoration: none;
-    color: black;
+.removeThingy {
+    color: red;
     background-color: transparent;
-    border: 0;
-    display: inline-block;
-
-    text-decoration: none;
-    text-align: center;
-    vertical-align: middle;
-
-    height: 25px;
-    width: 25%;
-    position: relative;
-    top: 25%;
-    bottom: 25%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    text-align: center;
-}
-
-.bottomMenu {
-    text-align: center;
-    background-attachment: scroll;
-    background-position: 0% 0%;
-    position: fixed;
-    bottom: 0pt;
-    background-color: white;
-    justify-content: space-around;
-    width: 100%;
-    height: 45px;
-    display: block;
-    overflow: hidden;
-}
-
-.aligner {
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.input {
-    border-radius: 5px;
-    width: 100%;
-    font-size: 19px;
-    height: auto;
-    outline: none;
-    margin-left: 5px;
-}
-
-/* ========================================================================== */
-input[type=checkbox]:focus {
-    outline: none;
-}
-
-input[type=checkbox] {
-    background-color: #fff;
-    border-radius: 2px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 19px;
-    height: 19px;
-    cursor: pointer;
-    position: relative;
-    top: 2px;
-    margin-right: 5px;
-}
-
-input[type=checkbox]:checked {
-    background-color: rgb(0, 51, 192);
 }
