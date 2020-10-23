@@ -102,6 +102,12 @@
     font-size: large;
     width: 100%;
     color: black;
+
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .dialogInputContainer {
