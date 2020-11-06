@@ -151,6 +151,12 @@ table {
     height: auto;
     outline: none;
     margin-left: 5px;
+
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /* ========================================================================== */
