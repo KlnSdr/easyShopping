@@ -16,7 +16,9 @@ function checkChanged() {
 
     for (let i = 0; i < list.length; i++) {
         if (list[i].n == PRODUCT) {
-            list[i].s = (this.checked == true) ? 1 : 0;
+            list[i].s = (this.checked == true) ? "1" : "0";
+            list[i].count = this.parentElement.children[1].innerText.replace(" (", "").replace(")", "");
+            console.log(list[i].count);
         }
     }
 
@@ -60,18 +62,18 @@ function loadList() {
 
     for (const count in list) {
         let item = list[count];
-        newCheckBox(item.n, item.c, item.s);
+        newCheckBox(item.n, item.c, item.s, (item.count != undefined) ? (item.count) : ("1"));
     }
 }
 // ==================================================================================================================================================
-function newButton(name) {
+function newButton(name, count) {
     let tr = document.createElement("tr");
     let td = document.createElement("td");
 
     let button = document.createElement("button");
     button.addEventListener("click", removeElement);
     button.className = "ListButton button";
-    let text = document.createTextNode(name);
+    let text = document.createTextNode(((count != 1) ? ("(" + count.toString() + ") ") : ("")) + name);
     button.appendChild(text);
 
     td.appendChild(button);
@@ -80,7 +82,11 @@ function newButton(name) {
     document.getElementById("ListParent").appendChild(tr);
 }
 // ==================================================================================================================================================
-function newCheckBox(name, group, status) {
+
+let timer;
+let touchduration = 500; //length of time we want the user to touch before we do something
+
+function newCheckBox(name, group, status, count) {
     // console.log(name);
     // console.log(group);
     // console.log(status);
@@ -98,13 +104,65 @@ function newCheckBox(name, group, status) {
 
     //<label class="selection"><input type="checkbox" onchange="checkChanged()" value="milch">Milch</label>
     let label = document.createElement("label");
+    label.addEventListener("touchstart", () => {
+        // label.addEventListener("mousedown", () => {
+        console.log("start");
+        timer = setTimeout(() => {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            console.log("stop");
+            console.log("long press");
+            // code
+            openDialog("Menge:", (data) => {
+                console.log("yes\nvalue:" + data);
+                label.children[1].innerText = ` (${data})`;
+            }, () => {
+                console.log("no");
+            }, "speichern", "verwerfen", true, "", "number", (context) => {
+                document.getElementById("dialogInput").value = parseInt(context[0].children[1].innerText.replace(" (", "").replace(")", ""));
+            }, label);
+        }, touchduration);
+    });
+    label.addEventListener("mouseup", () => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        console.log("stop");
+    });
+    label.addEventListener("touchcancel", () => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        console.log("stop");
+    });
+
+    label.addEventListener("touchend", () => {
+        if (timer) {
+            clearTimeout(timer);
+        }
+        console.log("stop");
+    });
+
     label.className = "selection";
     label.appendChild(box);
     let text = document.createTextNode(name);
     label.appendChild(text);
 
+    let lblCount = document.createElement("label");
+    lblCount.appendChild(document.createTextNode(` (${count})`));
+
+    label.appendChild(lblCount);
+
     document.getElementById(group).appendChild(label);
 }
+
+// function extractCountFromLabel(context) {
+//     // console.log(context.children[1].innerText.replace(" (", "").replace(")", ""));
+//     document.title = context.children[1].innerText.replace(" (", "").replace(")", "");
+//     document.getElementById("dialogInput").value = parseInt(context.children[1].innerText.replace(" (", "").replace(")", ""));
+//     console.log("test");
+// }
 // ==================================================================================================================================================
 function setup() {
     if (localStorage.getItem("workingList") !== "") {
@@ -180,7 +238,7 @@ function addCustom() {
         list.push(prod);
         save(list);
 
-        newCheckBox(document.getElementById("inCustom").value, "customProducts", "1");
+        newCheckBox(document.getElementById("inCustom").value, "customProducts", "1", "1");
         //===============================================================
         document.getElementById("inCustom").value = "";
     }
@@ -331,7 +389,7 @@ function generateList() {
 
     for (const count in list) {
         if (list[count].s == "1") {
-            newButton(list[count].n);
+            newButton(list[count].n, (list[count].count != undefined) ? list[count].count : 1);
         }
     }
 }
