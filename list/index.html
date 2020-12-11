@@ -11,16 +11,51 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="produkte.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase.js"></script>
     <script src="../database.js"></script>
     <script src="sketch.js"></script>
-
     <title>easyShopping</title>
 </head>
 
 <body onload="setup()">
     <div class="content">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2 id="headerDialog">easyShopping</h2>
+                </div>
+                <div class="modal-body">
+                    <p style="padding: 0px 16px;" id="dialogContent">Some text in the Modal Body</p>
+                    <div id="dialogInputContainer" class="dialogInputContainer">
+                        <input id="dialogInput" class="dialogInput" type="text">
+                    </div>
+                    <table style="padding-top: 16px;">
+                        <tr>
+                            <td style="width: 50%; padding-left: 8px; padding-right: 8px;">
+                                <button class="button dialogButton" id="dialogYes">
+                                    Ja
+                                </button>
+                            </td>
+                            <td style="width: 50%; padding-left: 8px; padding-right: 8px;">
+                                <button class="button dialogButton" id="dialogNo">
+                                    Nein
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+        <script src="../dialog.js"></script>
+
         <div id="menu" class="container">
             <label class="header">easyShopping</label>
 
@@ -152,7 +187,19 @@
                     </td>
                 </tr>
             </table>
-            <p>v1.2.0.2</p>
+            <table>
+                <tr>
+                    <td>
+                        <ul style="width: auto;">
+                            <li>
+                                <h3>Anzahl</h3>
+                                Um die Anzahl des zu kaufenden Produktes zu verändern, musst du lediglich lang auf dieses klicken. Wenn du die Menge in das Textfeld eingetragen hast, ist der letzte Schritt nur noch auf "speichern" zu klicken.
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <p style="margin: 5px;">v1.3.0.0</p>
         </div>
 
         <!-- ======================================================================================== -->

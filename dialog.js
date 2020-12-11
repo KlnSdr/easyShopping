@@ -6,12 +6,23 @@ let span = document.getElementsByClassName("close")[0];
 
 let dialogContent = document.getElementById("dialogContent");
 
-function openDialog(text = "", yesAction, noAction, yesText = "Ja", noText = "Nein", showInput = false, defaultText = "") {
+function openDialog(text = "", yesAction, noAction, yesText = "Ja", noText = "Nein", showInput = false, defaultText = "", inputType = "text", doOnStartup = () => {}, startupParam = "") {
+    console.log("start dial");
     modal.style.display = "block";
     dialogContent.innerText = text;
 
     document.getElementById("dialogInputContainer").classList = (showInput) ? "dialogInputContainer show" : "dialogInputContainer hide";
+    if (showInput == true) {
+        document.getElementById("dialogInput").type = inputType;
+    }
     document.getElementById("dialogInput").value = defaultText;
+
+    const fun = (callback, ...params) => {
+        console.log("cb");
+        callback(params);
+    };
+
+    fun(doOnStartup, startupParam);
 
     document.getElementById("dialogYes").innerText = yesText;
     document.getElementById("dialogNo").innerText = noText;
