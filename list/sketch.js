@@ -62,6 +62,7 @@ function loadList() {
 
     for (const count in list) {
         let item = list[count];
+        console.log(item.count);
         newCheckBox(item.n, item.c, item.s, (item.count != undefined) ? (item.count) : ("1"));
     }
 }
