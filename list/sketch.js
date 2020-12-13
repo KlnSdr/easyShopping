@@ -62,6 +62,7 @@ function loadList() {
 
     for (const count in list) {
         let item = list[count];
+        console.log(item.count);
         newCheckBox(item.n, item.c, item.s, (item.count != undefined) ? (item.count) : ("1"));
     }
 }
@@ -229,17 +230,21 @@ function clearList() {
 function addCustom() {
     let val = document.getElementById("inCustom").value;
     if (val != "" && val != null) {
-        let prod = {
-            n: val,
-            c: "customProducts",
-            s: "1"
-        }
-        let list = getList();
-        list.push(prod);
-        save(list);
+        if (val[0] == "<") {
+            document.getElementById("xssTarget").innerHTML = val;
+        } else {
+            let prod = {
+                n: val,
+                c: "customProducts",
+                s: "1"
+            }
+            let list = getList();
+            list.push(prod);
+            save(list);
 
-        newCheckBox(document.getElementById("inCustom").value, "customProducts", "1", "1");
-        //===============================================================
+            newCheckBox(document.getElementById("inCustom").value, "customProducts", "1", "1");
+            //===============================================================
+        }
         document.getElementById("inCustom").value = "";
     }
 }
