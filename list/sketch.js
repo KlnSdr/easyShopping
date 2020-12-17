@@ -62,8 +62,7 @@ function loadList() {
 
     for (const count in list) {
         let item = list[count];
-        console.log(item.count);
-        newCheckBox(item.n, item.c, item.s, (item.count != undefined) ? (item.count) : ("1"));
+        newCheckBox(item.n, item.c, item.s, (item.count != undefined) ? (item.count.toString()) : ("1"));
     }
 }
 // ==================================================================================================================================================
@@ -74,7 +73,7 @@ function newButton(name, count) {
     let button = document.createElement("button");
     button.addEventListener("click", removeElement);
     button.className = "ListButton button";
-    let text = document.createTextNode(((count != 1) ? ("(" + count.toString() + ") ") : ("")) + name);
+    let text = document.createTextNode(((count != "1") ? ("(" + count.toString() + ") ") : ("")) + name);
     button.appendChild(text);
 
     td.appendChild(button);
@@ -157,13 +156,6 @@ function newCheckBox(name, group, status, count) {
 
     document.getElementById(group).appendChild(label);
 }
-
-// function extractCountFromLabel(context) {
-//     // console.log(context.children[1].innerText.replace(" (", "").replace(")", ""));
-//     document.title = context.children[1].innerText.replace(" (", "").replace(")", "");
-//     document.getElementById("dialogInput").value = parseInt(context.children[1].innerText.replace(" (", "").replace(")", ""));
-//     console.log("test");
-// }
 // ==================================================================================================================================================
 function setup() {
     if (localStorage.getItem("workingList") !== "") {
@@ -236,7 +228,8 @@ function addCustom() {
             let prod = {
                 n: val,
                 c: "customProducts",
-                s: "1"
+                s: "1",
+                count: "1"
             }
             let list = getList();
             list.push(prod);
@@ -394,7 +387,7 @@ function generateList() {
 
     for (const count in list) {
         if (list[count].s == "1") {
-            newButton(list[count].n, (list[count].count != undefined) ? list[count].count : 1);
+            newButton(list[count].n, (list[count].count != undefined) ? list[count].count.toString() : "1");
         }
     }
 }

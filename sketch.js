@@ -14,6 +14,18 @@ function setup() {
     // ======================================================
 }
 
+function switchTo(id) {
+    let menu = document.getElementsByClassName("container");
+    for (let i = 0; i < menu.length; i++) {
+        menu[i].style.visibility = "hidden";
+        menu[i].style.display = "none";
+    }
+
+    let div = document.getElementById(id);
+    div.style.visibility = "visible";
+    div.style.display = "block";
+}
+
 function setupPartTwo() {
     if (localStorage.getItem("workingList") !== "") {
         navigateTo(localStorage.getItem("workingList"), true);

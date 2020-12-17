@@ -79,10 +79,47 @@
         <script src="dialog.js"></script>
 
         <!-- ======================================================================================== -->
+        <div id="settings" class="container">
+            <label class="header">Settings</label>
+            <table>
+                <tr>
+                    <td>
+                        <!-- reset list -->
+                        <button class="button fa fa-undo" style="background-color: #777;"></button>
+                    </td>
+
+                    <td>
+                        <!-- clear list -->
+                        <button class="button fa fa-recycle" style="background-color: #777;"></button>
+                    </td>
+
+                    <td>
+                        <!-- share list -->
+                        <button class="button fa fa-share" style="background-color: #777;"></button>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <ul style="width: auto;">
+                            <li>
+                                <h3>Anzahl</h3>
+                                Um die Anzahl des zu kaufenden Produktes zu verändern, musst du lediglich lang auf
+                                dieses klicken. Wenn du die Menge in das Textfeld eingetragen hast, ist der letzte
+                                Schritt nur noch auf "speichern" zu klicken.
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <p style="margin: 5px;">v1.3.1.2</p>
+        </div>
+
         <div class="bottomMenu aligner">
             <button class="fa fa-plus menuButton" onclick="addList();"></button>
-            <button class="fa fa-home menuButton"></button>
-            <button class="fa fa-cog menuButton" disabled style="color: gray;"></button>
+            <button class="fa fa-home menuButton" onclick="switchTo('DivLists');"></button>
+            <button class="fa fa-cog menuButton" onclick="switchTo('settings');"></button>
         </div>
     </div>
 </body>
