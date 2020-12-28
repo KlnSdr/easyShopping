@@ -23,6 +23,15 @@ function checkChanged() {
     }
 
     save(list);
+
+    try {
+        const sync = localStorage.getItem(currentList + ".config").split(";");
+        if (sync.length > 1 && sync[0] == "true") {
+            var updates = {};
+            updates['content'] = postData;
+            updateDatabaseEntry(updates, sync[1]);
+        }
+    } catch (error) {}
 }
 // ==================================================================================================================================================
 function save(list) {

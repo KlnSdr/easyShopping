@@ -20,3 +20,8 @@ function readDatabase(id, callback) {
         callback(data.val());
     });
 }
+
+function updateDatabaseEntry(options, key) {
+    let ref = database.ref('lists/' + key);
+    return ref.update(options);
+}

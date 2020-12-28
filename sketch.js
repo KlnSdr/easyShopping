@@ -66,7 +66,7 @@ function setupPartTwo() {
 function openList(text) {
     openDialog("Möchtest du einen neuen Einkaufszettel erstellen?", () => {
         readDatabase(text, (data) => {
-            addList(true, data);
+            addList(true, data, text);
         });
     }, () => {
         setupPartTwo();
@@ -114,7 +114,6 @@ function newButton(name) {
         localStorage.removeItem(name);
         localStorage.setItem("Lists", tmp);
         reloadLists();
-
     });
 
     buttonTrash.className = "button removeThingy fa fa-trash";
@@ -128,7 +127,7 @@ function newButton(name) {
     document.getElementById("Lists").appendChild(tr);
 }
 // ==================================================================================================================================================
-function addList(sharedList = false, list = "") {
+function addList(sharedList = false, list = "", key = "") {
     if (sharedList) {
         list = JSON.parse(list);
         console.log(list);
@@ -142,6 +141,9 @@ function addList(sharedList = false, list = "") {
             localStorage.setItem("Lists", localStorage.getItem("Lists") + name + ";");
             if (sharedList) {
                 localStorage.setItem(name, JSON.stringify(JSON.parse(list.content)));
+                if (list.sync == "true") {
+                    localStorage.setItem(name + ".config", "true;" + key);
+                }
             }
             navigateTo(name, true);
         }
