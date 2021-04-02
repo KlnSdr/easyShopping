@@ -19,16 +19,16 @@ function switchTo(id) {
 function newButton(name, count) {
     let tr = document.createElement("tr");
     let td = document.createElement("td");
-    
+
     let button = document.createElement("button");
     button.addEventListener("click", removeElement);
     button.className = "ListButton button";
-    let text = document.createTextNode(((count != "1") ? ("(" + count.toString() + ") ") : ("")) + name);
+    let text = document.createTextNode(((count != "1") ? (count.toString() + "x") : ("")) + name);
     button.appendChild(text);
-    
+
     td.appendChild(button);
     tr.appendChild(td);
-    
+
     document.getElementById("ListParent").appendChild(tr);
 }
 // =========================================================================================================================
@@ -39,7 +39,7 @@ function removeElement() {
 }
 // =========================================================================================================================
 let timer;
-let touchduration = 500; //length of time we want the user to touch before we do something
+let touchduration = 1000; //length of time we want the user to touch before we do something
 function newCheckBox(name, group, status, count) {
     // console.log(name);
     // console.log(group);
@@ -71,6 +71,8 @@ function newCheckBox(name, group, status, count) {
             openDialog("Menge:", (data) => {
                 console.log("yes\nvalue:" + data);
                 label.children[1].innerText = ` (${data})`;
+                // checkChanged("Obst");
+                label.children[0].dispatchEvent(new Event("change"));
             }, () => {
                 console.log("no");
             }, "speichern", "verwerfen", true, "", "number", (context) => {
