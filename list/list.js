@@ -56,7 +56,7 @@ function checkChanged() {
         const sync = localStorage.getItem(currentList + ".config").split(";");
         if (sync.length > 1 && sync[0] == "true") {
             var updates = {};
-            updates['content'] = postData;
+            updates['content'] = JSON.stringify(list);
             updateDatabaseEntry(updates, sync[1]);
         }
     } catch (error) {}

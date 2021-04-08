@@ -141,7 +141,7 @@ function addList(sharedList = false, list = "", key = "") {
             localStorage.setItem("Lists", localStorage.getItem("Lists") + name + ";");
             if (sharedList) {
                 localStorage.setItem(name, JSON.stringify(JSON.parse(list.content)));
-                if (list.sync == "true") {
+                if (/*list.sync == "true"*/true) {
                     localStorage.setItem(name + ".config", "true;" + key);
                 }
             }
