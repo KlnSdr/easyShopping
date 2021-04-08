@@ -5,6 +5,10 @@ function shareList() {
         content: JSON.stringify(list)
     });
 
+    if (/*list.sync == "true"*/true) {
+        localStorage.setItem(currentList + ".config", "true;" + id);
+    }
+
     let text = "https://KlnSdr.github.io/easyShopping?lst=" + encodeURIComponent(id);
     sendWhatsApp(text);
 }
