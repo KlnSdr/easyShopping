@@ -1,2 +1,5 @@
 databaseStuff.txt
 test.*
+node_modules
+*.js
+!libs/*.js
