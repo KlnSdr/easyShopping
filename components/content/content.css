@@ -1,0 +1,50 @@
+#content {
+  background-color: #0000ff;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  padding: 5px;
+  text-align: center;
+}
+
+#content ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+#content ul li {
+  list-style: none;
+}
+
+#content ul li {
+  margin-bottom: 5px;
+}
+
+#content ul li:last-child {
+  margin-bottom: 0px;
+}
+
+.containerDeleteList {
+  height: 45px;
+  background-color: gray;
+  align-items: center;
+  display: flex;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.containerChoice {
+  margin-left: auto;
+}
+
+.containerChoice .squareButton {
+  width: 35px;
+  height: 35px;
+}
+
+.fa-check {
+  color: green;
+}
+
+.fa-times {
+  color: red;
+}

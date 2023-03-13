@@ -12,6 +12,8 @@ let state: State = {
 };
 
 function startup() {
+  initUI();
+
   state.mode = getCurrentState();
   Hub.generateListButtons(["Rewe", "Netto", "Lidl"]);
 }
@@ -23,4 +25,9 @@ function getCurrentState(): AppMode {
   }
 
   return AppMode.list;
+}
+
+function initUI() {
+  edom.init();
+  UI.init();
 }
