@@ -12,21 +12,20 @@
     <link rel="stylesheet" href="style.css" />
 
     <script src="libs/swiped-events.min.js"></script>
+    <script src="edom/edom.js"></script>
+    <script src="edom/component.js"></script>
+
+    <script src="components/navbar/navbar.js"></script>
+    <link rel="stylesheet" href="components/navbar/navbar.css" />
+    <script src="components/headline/headline.js"></script>
+    <link rel="stylesheet" href="components/headline/headline.css" />
+    <script src="components/content/content.js"></script>
+    <link rel="stylesheet" href="components/content/content.css" />
+
+    <script src="ui.js"></script>
     <script src="store.js"></script>
     <script src="hub.js"></script>
     <script src="index.js"></script>
   </head>
-  <body onload="startup()">
-    <div class="top">
-      <h1 id="headline">Meine Einkaufszettel</h1>
-    </div>
-    <div id="content">
-      <ul id="listButtons"></ul>
-    </div>
-    <nav>
-      <button class="fa fa-plus"></button>
-      <button class="fa fa-home"></button>
-      <button class="fa fa-cog"></button>
-    </nav>
-  </body>
+  <body onload="startup()"></body>
 </html>
