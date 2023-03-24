@@ -5,17 +5,18 @@ enum AppMode {
 
 interface State {
   mode: AppMode;
+  context: Context;
 }
 
 let state: State = {
   mode: AppMode.hub,
+  context: new Context(),
 };
 
 function startup() {
   initUI();
 
   state.mode = getCurrentState();
-  Hub.generateListButtons(["Rewe", "Netto", "Lidl"]);
 }
 
 function getCurrentState(): AppMode {
