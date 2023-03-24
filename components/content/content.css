@@ -6,23 +6,6 @@
   text-align: center;
 }
 
-#content ul {
-  padding: 0px;
-  margin: 0px;
-}
-
-#content ul li {
-  list-style: none;
-}
-
-#content ul li {
-  margin-bottom: 5px;
-}
-
-#content ul li:last-child {
-  margin-bottom: 0px;
-}
-
 .containerDeleteList {
   height: 45px;
   background-color: gray;

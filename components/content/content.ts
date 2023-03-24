@@ -7,7 +7,6 @@ class Content implements Component {
     return {
       tag: "div",
       id: "content",
-      children: [{ tag: "ul", id: "listButtons" }],
     };
   }
 
