@@ -1,33 +1,33 @@
 #content {
-  background-color: #0000ff;
-  margin-top: 45px;
-  margin-bottom: 45px;
-  padding: 5px;
-  text-align: center;
+    background-color: #0000ff;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    padding: 5px;
+    text-align: center;
 }
 
 .containerDeleteList {
-  height: 45px;
-  background-color: gray;
-  align-items: center;
-  display: flex;
-  padding-left: 5px;
-  padding-right: 5px;
+    height: 45px;
+    background-color: gray;
+    align-items: center;
+    display: flex;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .containerChoice {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .containerChoice .squareButton {
-  width: 35px;
-  height: 35px;
+    width: 35px;
+    height: 35px;
 }
 
 .fa-check {
-  color: green;
+    color: green;
 }
 
 .fa-times {
-  color: red;
+    color: red;
 }

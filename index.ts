@@ -1,34 +1,35 @@
 enum AppMode {
-  hub,
-  list,
+    hub,
+    list,
 }
 
 interface State {
-  mode: AppMode;
-  context: Context;
+    mode: AppMode;
+    context: Context;
+    currentList: List | null;
 }
 
-let state: State = {
-  mode: AppMode.hub,
-  context: new Context(),
-};
+let state: State;
 
 function startup() {
-  initUI();
+    edom.init();
+    state = {
+        mode: getCurrentState(),
+        context: new Context(),
+        currentList: null,
+    };
 
-  state.mode = getCurrentState();
+    initUI();
 }
 
 function getCurrentState(): AppMode {
-  const value: Optional<string> = Store.getString("currentList");
-  if (value.isPresent === false || value.value === "") {
-    return AppMode.hub;
-  }
-
-  return AppMode.list;
+    const value: Optional<string> = Store.getString('currentList');
+    if (value.isPresent === false || value.value === '') {
+        return AppMode.hub;
+    }
+    return AppMode.list;
 }
 
 function initUI() {
-  edom.init();
-  UI.init();
+    UI.init();
 }
