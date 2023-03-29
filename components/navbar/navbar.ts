@@ -6,6 +6,8 @@ class Navbar implements Component {
             body: (self: edomElement) => {
                 const tst: List = new List('testList', baseListProducts);
                 Store.writeList(tst);
+                state.currentList = tst;
+                state.context.openList(tst.name);
             },
         },
         'fa-home': {

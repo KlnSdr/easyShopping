@@ -76,6 +76,7 @@ class Context {
         if (setContext) {
             this.currentContext = this.contextHierarchy;
         }
+        edom.findById('headline')!.text = 'Meine Einkaufszettel';
         new ListHub(Store.getListNames()).render(edom.findById('content')!);
     }
 
