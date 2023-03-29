@@ -77,6 +77,7 @@ function newCheckBox(name, group, status, count) {
                 console.log("no");
             }, "speichern", "verwerfen", true, "", "number", (context) => {
                 document.getElementById("dialogInput").value = parseInt(context[0].children[1].innerText.replace(" (", "").replace(")", ""));
+                document.getElementById("dialogInput").focus();
             }, label);
         }, touchduration);
     });
