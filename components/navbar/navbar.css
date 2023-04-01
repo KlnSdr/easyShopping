@@ -16,3 +16,7 @@ nav {
 nav button {
     width: 30vw;
 }
+
+nav div {
+    display: inline-block;
+}
