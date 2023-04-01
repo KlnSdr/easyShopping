@@ -5,29 +5,3 @@
     padding: 5px;
     text-align: center;
 }
-
-.containerDeleteList {
-    height: 45px;
-    background-color: gray;
-    align-items: center;
-    display: flex;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.containerChoice {
-    margin-left: auto;
-}
-
-.containerChoice .squareButton {
-    width: 35px;
-    height: 35px;
-}
-
-.fa-check {
-    color: green;
-}
-
-.fa-times {
-    color: red;
-}
