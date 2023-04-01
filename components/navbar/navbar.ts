@@ -4,7 +4,7 @@ class Navbar implements Component {
             type: 'click',
             id: 'clickShowShoppinglist',
             body: (self: edomElement) => {
-                // todo implement
+                state.context.openShoppinglist();
             },
         },
         'fa-plus': {
