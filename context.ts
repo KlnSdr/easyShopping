@@ -50,7 +50,28 @@ class Context {
                                 },
                             ],
                         },
-                        { tag: 'div', id: 'contextList' },
+                        {
+                            tag: 'div',
+                            id: 'contextList',
+                            handler: [
+                                {
+                                    type: 'click',
+                                    id: 'clickLoadSections',
+                                    body: () => {
+                                        if (
+                                            this.currentContext.id !==
+                                            'contextList'
+                                        ) {
+                                            return;
+                                        }
+                                        state.context.openList(
+                                            state.currentList!.name,
+                                            false
+                                        );
+                                    },
+                                },
+                            ],
+                        },
                         { tag: 'div', id: 'contextSettings' },
                     ],
                 },
@@ -102,6 +123,21 @@ class Context {
         }
 
         new Section(name).render(edom.findById('content')!);
+    }
+
+    public openShoppinglist(setContext: boolean = true) {
+        if (state.currentList === null) {
+            return;
+        }
+
+        if (setContext) {
+            this.currentContext = edom.findById('contextList')!;
+            this.clearContent();
+        }
+
+        new Shoppinglist(state.currentList!.getShoppinglist()).render(
+            edom.findById('content')!
+        );
     }
 
     public loadNextHigherContext() {

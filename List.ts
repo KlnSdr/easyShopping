@@ -73,6 +73,12 @@ class List {
         });
     }
 
+    public getShoppinglist(): string[] {
+        return this.products
+            .filter((product: Product) => product.selected)
+            .map((product: Product) => product.name);
+    }
+
     public serialize(): obj {
         return this.items.map((item: Product) => item.serialize());
     }
