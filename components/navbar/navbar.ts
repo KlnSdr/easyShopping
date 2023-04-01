@@ -1,5 +1,12 @@
 class Navbar implements Component {
     private static buttonHandler: { [key: string]: handlerPreObject } = {
+        'fa-list': {
+            type: 'click',
+            id: 'clickShowShoppinglist',
+            body: (self: edomElement) => {
+                // todo implement
+            },
+        },
         'fa-plus': {
             type: 'click',
             id: 'clickAddList',
@@ -12,14 +19,14 @@ class Navbar implements Component {
         },
         'fa-home': {
             type: 'click',
-            id: 'clickAddList',
+            id: 'clickMoveContextUp',
             body: (self: edomElement) => {
                 state.context.loadNextHigherContext();
             },
         },
         'fa-cog': {
             type: 'click',
-            id: 'clickAddList',
+            id: 'clickOpenSettings',
             body: (self: edomElement) => {},
         },
     };
@@ -31,15 +38,37 @@ class Navbar implements Component {
     public instructions(): edomTemplate {
         return {
             tag: 'nav',
-            children: ['fa-plus', 'fa-home', 'fa-cog'].map(
-                (specialClass: string) => {
+            children: [
+                { divId: 'navbarBttnLeft', buttonClass: 'fa-plus' },
+                { divId: 'navbarBttnMiddle', buttonClass: 'fa-home' },
+                { divId: 'navbarBttnRight', buttonClass: 'fa-cog' },
+            ].map(
+                ({
+                    divId,
+                    buttonClass,
+                }: {
+                    divId: string;
+                    buttonClass: string;
+                }) => {
                     return {
-                        tag: 'button',
-                        classes: ['fa', specialClass],
-                        handler: [Navbar.buttonHandler[specialClass]],
+                        tag: 'div',
+                        id: divId,
+                        children: [
+                            Navbar.getNavbarButtonInstructions(buttonClass),
+                        ],
                     };
                 }
             ),
+        };
+    }
+
+    public static getNavbarButtonInstructions(
+        buttonClass: string
+    ): edomTemplate {
+        return {
+            tag: 'button',
+            classes: ['fa', buttonClass],
+            handler: [Navbar.buttonHandler[buttonClass]],
         };
     }
 

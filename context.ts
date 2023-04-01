@@ -23,6 +23,7 @@ class Context {
                                 }
                                 state.context.openListHub(false);
                                 Store.writeString('currentList', '');
+                                this.setLeftNavbarButton('fa-plus');
                             },
                         },
                     ],
@@ -90,6 +91,8 @@ class Context {
         Store.writeString('currentList', name);
         new ProductSections().render(edom.findById('content')!);
         edom.findById('headline')!.text = name;
+
+        this.setLeftNavbarButton('fa-list');
     }
 
     public openSection(name: string, setContext: boolean = true) {
@@ -113,5 +116,26 @@ class Context {
         edom.findById('content')?.children.forEach((child: edomElement) => {
             child.delete();
         });
+    }
+
+    private setLeftNavbarButton(buttonClass: string) {
+        // switch navbar button from add new list to display shopinglist
+        const leftButton: edomElement | undefined =
+            edom.findById('navbarBttnLeft');
+        if (leftButton === undefined) {
+            console.error(
+                'could not switch navbar button because left navbar button container was not found.'
+            );
+            return;
+        }
+
+        leftButton.children.forEach((child: edomElement) => {
+            child.delete();
+        });
+
+        edom.fromTemplate(
+            [Navbar.getNavbarButtonInstructions(buttonClass)],
+            leftButton
+        );
     }
 }
