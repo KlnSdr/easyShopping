@@ -2,8 +2,6 @@
     height: 45px;
     align-items: center;
     display: flex;
-    padding-left: 5px;
-    padding-right: 5px;
 }
 
 .containerChoice {
@@ -16,9 +14,10 @@
 }
 
 .fa-check {
-    color: green;
+    color: lime;
 }
 
 .fa-times {
     color: red;
+    margin-left: 5px;
 }
