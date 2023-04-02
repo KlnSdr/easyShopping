@@ -11,7 +11,7 @@ class Headline implements Component {
                 {
                     tag: 'h1',
                     id: 'headline',
-                    text: 'Meine Einkaufszettel',
+                    text: 'Einkaufszettel',
                 },
             ],
         };

@@ -98,7 +98,7 @@ class Context {
         if (setContext) {
             this.currentContext = this.contextHierarchy;
         }
-        edom.findById('headline')!.text = 'Meine Einkaufszettel';
+        edom.findById('headline')!.text = 'Einkaufszettel';
         new ListHub(Store.getListNames()).render(edom.findById('content')!);
     }
 

@@ -19,6 +19,7 @@ class Section implements Component {
     public instructions(): edomTemplate {
         return {
             tag: 'ul',
+            classes: ['listHub', 'ulSection'],
             children: this.products.map((product: Product) => {
                 return {
                     tag: 'li',
@@ -30,6 +31,7 @@ class Section implements Component {
                                     tag: 'input',
                                     type: 'checkbox',
                                     checked: product.selected,
+                                    id: `checkbox${product.name}`,
                                     handler: [
                                         {
                                             type: 'click',
@@ -45,8 +47,12 @@ class Section implements Component {
                                         },
                                     ],
                                 },
+                                {
+                                    tag: 'label',
+                                    text: product.name,
+                                    for: `checkbox${product.name}`,
+                                },
                             ],
-                            text: product.name,
                         },
                     ],
                 };
