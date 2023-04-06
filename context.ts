@@ -24,6 +24,7 @@ class Context {
                                 state.context.openListHub(false);
                                 Store.writeString('currentList', '');
                                 this.setLeftNavbarButton('fa-plus');
+                                this.setRightNavbarButton('fa-info-circle');
                             },
                         },
                     ],
@@ -72,10 +73,49 @@ class Context {
                                 },
                             ],
                         },
-                        { tag: 'div', id: 'contextSettings' },
+                        {
+                            tag: 'div',
+                            id: 'contextSettings',
+                            handler: [
+                                {
+                                    type: 'click',
+                                    id: 'clickLoadSections',
+                                    body: () => {
+                                        if (
+                                            this.currentContext.id !==
+                                            'contextSettings'
+                                        ) {
+                                            return;
+                                        }
+                                        state.context.openList(
+                                            state.currentList!.name,
+                                            false
+                                        );
+                                    },
+                                },
+                            ],
+                        },
                     ],
                 },
-                { tag: 'div', id: 'contextSettings' },
+                {
+                    tag: 'div',
+                    id: 'contextInfo',
+                    handler: [
+                        {
+                            type: 'click',
+                            id: 'clickLoadHub',
+                            body: () => {
+                                if (this.currentContext.id !== 'contextInfo') {
+                                    return;
+                                }
+                                state.context.openListHub(false);
+                                Store.writeString('currentList', '');
+                                this.setLeftNavbarButton('fa-plus');
+                                this.setRightNavbarButton('fa-info-circle');
+                            },
+                        },
+                    ],
+                },
                 { tag: 'div', id: 'contextnewList' },
             ],
             hubContext
@@ -114,6 +154,7 @@ class Context {
         edom.findById('headline')!.text = name;
 
         this.setLeftNavbarButton('fa-list');
+        this.setRightNavbarButton('fa-cog');
     }
 
     public openSection(name: string, setContext: boolean = true) {
@@ -138,6 +179,24 @@ class Context {
         new Shoppinglist(state.currentList!.getShoppinglist()).render(
             edom.findById('content')!
         );
+    }
+
+    public openInfoScreen(setContext: boolean = true) {
+        if (setContext) {
+            this.currentContext = edom.findById('contextInfo')!;
+            this.clearContent();
+        }
+
+        new InfoScreen().render(edom.findById('content')!);
+    }
+
+    public openSettingsScreen(setContext: boolean = true) {
+        if (setContext) {
+            this.currentContext = edom.findById('contextSettings')!;
+            this.clearContent();
+        }
+
+        new ListSettings().render(edom.findById('content')!);
     }
 
     public loadNextHigherContext() {
@@ -172,6 +231,27 @@ class Context {
         edom.fromTemplate(
             [Navbar.getNavbarButtonInstructions(buttonClass)],
             leftButton
+        );
+    }
+
+    private setRightNavbarButton(buttonClass: string) {
+        // switch navbar button from info to display "settings"
+        const rightButton: edomElement | undefined =
+            edom.findById('navbarBttnRight');
+        if (rightButton === undefined) {
+            console.error(
+                'could not switch navbar button because right navbar button container was not found.'
+            );
+            return;
+        }
+
+        rightButton.children.forEach((child: edomElement) => {
+            child.delete();
+        });
+
+        edom.fromTemplate(
+            [Navbar.getNavbarButtonInstructions(buttonClass)],
+            rightButton
         );
     }
 }

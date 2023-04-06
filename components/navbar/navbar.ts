@@ -3,14 +3,14 @@ class Navbar implements Component {
         'fa-list': {
             type: 'click',
             id: 'clickShowShoppinglist',
-            body: (self: edomElement) => {
+            body: (_self: edomElement) => {
                 state.context.openShoppinglist();
             },
         },
         'fa-plus': {
             type: 'click',
             id: 'clickAddList',
-            body: (self: edomElement) => {
+            body: (_self: edomElement) => {
                 const tst: List = new List('testList', baseListProducts);
                 Store.writeList(tst);
                 state.currentList = tst;
@@ -20,14 +20,23 @@ class Navbar implements Component {
         'fa-home': {
             type: 'click',
             id: 'clickMoveContextUp',
-            body: (self: edomElement) => {
+            body: (_self: edomElement) => {
                 state.context.loadNextHigherContext();
+            },
+        },
+        'fa-info-circle': {
+            type: 'click',
+            id: 'clickOpenInfo',
+            body: (_self: edomElement) => {
+                state.context.openInfoScreen();
             },
         },
         'fa-cog': {
             type: 'click',
             id: 'clickOpenSettings',
-            body: (self: edomElement) => {},
+            body: (_self: edomElement) => {
+                state.context.openSettingsScreen();
+            },
         },
     };
 
@@ -41,7 +50,7 @@ class Navbar implements Component {
             children: [
                 { divId: 'navbarBttnLeft', buttonClass: 'fa-plus' },
                 { divId: 'navbarBttnMiddle', buttonClass: 'fa-home' },
-                { divId: 'navbarBttnRight', buttonClass: 'fa-cog' },
+                { divId: 'navbarBttnRight', buttonClass: 'fa-info-circle' },
             ].map(
                 ({
                     divId,
