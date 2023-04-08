@@ -3,22 +3,32 @@ class ListSettings implements Component {
         'fa-undo': {
             type: 'click',
             id: 'resetList',
-            body: (_self: edomElement) => {
-                state.currentList = new List(
-                    state.currentList!.name,
-                    baseListProducts
-                );
-                Store.writeList(state.currentList!);
+            body: (self: edomElement) => {
+                try {
+                    state.currentList = new List(
+                        state.currentList!.name,
+                        baseListProducts
+                    );
+                    Store.writeList(state.currentList!);
+                    self.applyStyle('success');
+                } catch (e) {
+                    self.applyStyle('fail');
+                }
             },
         },
         'fa-recycle': {
             type: 'click',
             id: 'recycleList',
-            body: (_self: edomElement) => {
-                state.currentList?.products.forEach(
-                    (product: Product) => (product.selected = false)
-                );
-                Store.writeList(state.currentList!);
+            body: (self: edomElement) => {
+                try {
+                    state.currentList?.products.forEach(
+                        (product: Product) => (product.selected = false)
+                    );
+                    Store.writeList(state.currentList!);
+                    self.applyStyle('success');
+                } catch (e) {
+                    self.applyStyle('fail');
+                }
             },
         },
         'fa-share': {
