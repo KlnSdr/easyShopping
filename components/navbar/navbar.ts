@@ -11,10 +11,7 @@ class Navbar implements Component {
             type: 'click',
             id: 'clickAddList',
             body: (_self: edomElement) => {
-                const tst: List = new List('testList', baseListProducts);
-                Store.writeList(tst);
-                state.currentList = tst;
-                state.context.openList(tst.name);
+                new Dialog(new addNewList()).render(edom.findById('content')!);
             },
         },
         'fa-home': {

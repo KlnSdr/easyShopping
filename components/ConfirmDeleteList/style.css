@@ -11,11 +11,6 @@
     margin-left: auto;
 }
 
-.containerChoice .squareButton {
-    width: 30px;
-    height: 30px;
-}
-
 .fa-check {
     color: lime;
 }
