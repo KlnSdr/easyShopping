@@ -82,4 +82,8 @@ class List {
     public serialize(): obj {
         return this.items.map((item: Product) => item.serialize());
     }
+
+    public addProduct(product: Product) {
+        this.products.push(product);
+    }
 }

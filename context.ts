@@ -163,7 +163,12 @@ class Context {
             this.clearContent();
         }
 
-        new Section(name).render(edom.findById('content')!);
+        edom.findById('headline')!.text = name;
+        if (name === 'Eigene') {
+            new SectionOwn().render(edom.findById('content')!);
+        } else {
+            new Section(name).render(edom.findById('content')!);
+        }
     }
 
     public openShoppinglist(setContext: boolean = true) {

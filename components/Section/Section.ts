@@ -13,7 +13,6 @@ class Section implements Component {
 
     public render(parent: edomElement) {
         edom.fromTemplate([this.instructions()], parent);
-        edom.findById('headline')!.text = this.name;
     }
 
     public instructions(): edomTemplate {
