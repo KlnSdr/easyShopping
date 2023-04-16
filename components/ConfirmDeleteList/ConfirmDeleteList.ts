@@ -31,6 +31,7 @@ class ConfirmDeleteList implements Component {
                                     body: (self: edomElement) => {
                                         self.parent?.parent?.parent?.delete();
                                         Store.deleteList(this.listName);
+                                        state.context.openListHub();
                                     },
                                 },
                             ],

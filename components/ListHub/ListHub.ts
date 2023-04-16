@@ -8,6 +8,9 @@ class ListHub implements Component {
     }
 
     public instructions(): edomTemplate {
+        if (this.listNames.length === 0) {
+            return new frownie().instructions();
+        }
         return {
             tag: 'ul',
             classes: ['listHub'],
