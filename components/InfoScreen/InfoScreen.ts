@@ -5,8 +5,18 @@ class InfoScreen implements Component {
 
     public instructions(): edomTemplate {
         return {
-            tag: 'p',
-            text: 'v2.0.0',
+            tag: 'div',
+            children: [
+                {
+                    tag: 'img',
+                    classes: ['logo'],
+                    src: 'favicon.svg',
+                },
+                {
+                    tag: 'p',
+                    text: 'v2.0.0',
+                },
+            ],
         };
     }
 

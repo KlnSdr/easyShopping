@@ -192,6 +192,7 @@ class Context {
             this.clearContent();
         }
 
+        edom.findById('headline')!.text = 'Info';
         new InfoScreen().render(edom.findById('content')!);
     }
 
