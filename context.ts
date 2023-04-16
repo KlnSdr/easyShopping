@@ -137,6 +137,7 @@ class Context {
     public openListHub(setContext: boolean = true) {
         if (setContext) {
             this.currentContext = this.contextHierarchy;
+            this.clearContent();
         }
         edom.findById('headline')!.text = 'Einkaufszettel';
         new ListHub(Store.getListNames()).render(edom.findById('content')!);
