@@ -48,9 +48,66 @@ class Section implements Component {
                                 },
                                 {
                                     tag: 'label',
-                                    text: product.name,
+                                    text: `${product.name} (${product.count})`,
                                     for: `checkbox${product.name}`,
                                 },
+                            ],
+                            handler: [
+                                {
+                                    type: 'touchstart',
+                                    id: 'startOfTouch',
+                                    body: (self: edomElement) => {
+                                        console.log('timer start');
+                                        self.setProperty(
+                                            'timerLongPress',
+                                            setTimeout(() => {
+                                                if (
+                                                    self.getProperty(
+                                                        'timerLongPress'
+                                                    )
+                                                ) {
+                                                    clearTimeout(
+                                                        self.getProperty(
+                                                            'timerLongPress'
+                                                        )
+                                                    );
+                                                }
+
+                                                console.log('stop');
+                                                console.log('long press');
+
+                                                new Dialog(
+                                                    new changeProductAmount(
+                                                        product
+                                                    )
+                                                ).render(
+                                                    edom.findById('content')!
+                                                );
+                                            }, 1000)
+                                        );
+                                    },
+                                },
+                                ...['mouseup', 'touchcancel', 'touchend'].map(
+                                    (eventName: string) => {
+                                        return {
+                                            type: eventName,
+                                            id: eventName,
+                                            body: (self: edomElement) => {
+                                                if (
+                                                    self.getProperty(
+                                                        'timerLongPress'
+                                                    )
+                                                ) {
+                                                    clearTimeout(
+                                                        self.getProperty(
+                                                            'timerLongPress'
+                                                        )
+                                                    );
+                                                }
+                                            },
+                                        };
+                                    }
+                                ),
                             ],
                         },
                     ],

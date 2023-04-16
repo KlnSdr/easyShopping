@@ -80,7 +80,11 @@ class List {
     public getShoppinglist(): string[] {
         return this.products
             .filter((product: Product) => product.selected)
-            .map((product: Product) => product.name);
+            .map(
+                (product: Product) =>
+                    (product.count > 1 ? `${product.count}x ` : '') +
+                    product.name
+            );
     }
 
     public serialize(): obj {
