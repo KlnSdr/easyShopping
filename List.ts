@@ -1,8 +1,8 @@
 interface ProductObj {
     n: string;
     s: string;
-    sl: string;
-    c: string;
+    sl: boolean;
+    c: number;
 }
 
 enum MethodShare {
@@ -49,8 +49,8 @@ class Product {
         return {
             n: this.name,
             s: this.section,
-            sl: this.selected ? '1' : '0',
-            c: this.count.toString(),
+            sl: this.selected,
+            c: this.count,
         };
     }
 }
@@ -68,12 +68,7 @@ class List {
     constructor(name: string, items: ProductObj[]) {
         this._name = name;
         this.items = items.map((item: ProductObj) => {
-            return new Product(
-                item.n,
-                item.s,
-                item.sl === '1' ? true : false,
-                parseInt(item.c)
-            );
+            return new Product(item.n, item.s, item.sl, item.c);
         });
     }
 
