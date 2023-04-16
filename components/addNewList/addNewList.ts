@@ -1,5 +1,6 @@
 class addNewList implements DialogContentComponent {
-    private inputId: string;
+    protected inputId: string;
+    protected listName: string = '';
 
     constructor() {
         this.inputId = Math.random().toString() + Math.random().toString();
@@ -21,6 +22,7 @@ class addNewList implements DialogContentComponent {
                 {
                     tag: 'input',
                     id: this.inputId,
+                    value: this.listName,
                 },
                 {
                     tag: 'div',
@@ -58,7 +60,7 @@ class addNewList implements DialogContentComponent {
 
     public unload() {}
 
-    private createNewList(self: edomElement) {
+    protected createNewList(self: edomElement) {
         const inputListName: edomInputElement = edom.findById(
             this.inputId
         ) as edomInputElement;
@@ -79,5 +81,37 @@ class addNewList implements DialogContentComponent {
 
     public onRendered() {
         edom.findById(this.inputId)!.focus();
+    }
+
+    protected getInputId(): string {
+        return this.inputId;
+    }
+}
+
+class addListFromFB extends addNewList {
+    private listData: ProductObj[];
+    constructor(remoteName: string, remoteListData: ProductObj[]) {
+        super();
+        super.listName = remoteName;
+        this.listData = remoteListData;
+    }
+
+    protected createNewList(self: edomElement) {
+        const inputListName: edomInputElement = edom.findById(
+            super.getInputId()
+        ) as edomInputElement;
+
+        const listName: string = inputListName.value.trim();
+
+        Dialog.findParentDialog(self).delete();
+
+        if (listName === '') {
+            return;
+        }
+
+        const list: List = new List(listName, this.listData);
+        Store.writeList(list);
+
+        state.context.openList(listName);
     }
 }

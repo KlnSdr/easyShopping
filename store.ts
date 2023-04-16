@@ -84,3 +84,40 @@ class Store {
         localStorage.setItem(Store.storeKey, JSON.stringify(data));
     }
 }
+
+class FirebaseConnector {
+    private static fbUrl: string = 'https://easyshopping-ac502.firebaseio.com';
+    private static database: any;
+
+    public static write(data: obj): string {
+        //@ts-ignore
+        const id: string = FirebaseConnector.database
+            .ref('lists')
+            .push(data).key;
+        return id;
+    }
+
+    public static read(id: string): Promise<obj> {
+        return new Promise<obj>((resolve) => {
+            FirebaseConnector.database
+                .ref(`lists/${id}`)
+                .once('value', (data: any) => {
+                    resolve(data.val());
+                });
+        });
+    }
+
+    public static initConnection() {
+        //@ts-ignore
+        firebase.initializeApp({
+            databaseURL: FirebaseConnector.fbUrl,
+        });
+        //@ts-ignore
+        FirebaseConnector.database = firebase.database();
+    }
+
+    public static closeConnection() {
+        //@ts-ignore
+        firebase.database().goOffline();
+    }
+}

@@ -34,9 +34,8 @@ class ListSettings implements Component {
         'fa-share': {
             type: 'click',
             id: 'shareList',
-            body: (_self: edomElement) => {
-                alert('todo: implement');
-            },
+            body: (_self: edomElement) =>
+                state.currentList?.share(MethodShare.WhatsApp),
         },
     };
 

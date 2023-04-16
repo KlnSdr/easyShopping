@@ -5,6 +5,10 @@ interface ProductObj {
     c: string;
 }
 
+enum MethodShare {
+    WhatsApp,
+}
+
 class Product {
     private _name: string;
     private _section: string;
@@ -86,4 +90,28 @@ class List {
     public addProduct(product: Product) {
         this.products.push(product);
     }
+
+    public share(method: MethodShare) {
+        switch (method) {
+            case MethodShare.WhatsApp:
+                const fbId: string = FirebaseConnector.write({
+                    name: this.name,
+                    data: this.serialize(),
+                });
+
+                const payload: string = `https://klnsdr.github.io/easyShopping?list=${encodeURIComponent(
+                    fbId
+                )}`;
+                sendWhatsApp(payload);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+function sendWhatsApp(payload: string) {
+    window.location.assign(
+        `whatsapp://send?text=${encodeURIComponent(payload)}`
+    );
 }
