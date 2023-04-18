@@ -1,0 +1,43 @@
+.dialogBackground {
+    position: fixed;
+    /* Stay in place */
+    z-index: 101;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #1f212b;
+    /* Fallback color */
+    background-color: #1f212bcc;
+    /* Black w/ opacity */
+    border-radius: 5px;
+}
+
+.dialogContainer {
+    margin: 15px;
+}
+
+.dialogHead {
+    background-color: var(--highlight);
+    padding: 5px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+}
+
+.dialogHead .squareButton {
+    background-color: var(--background);
+    margin-left: auto;
+}
+
+.dialogBody {
+    padding: 5px;
+    border-radius: 0px 0px 5px 5px;
+    border: 2.5px solid var(--highlight);
+}
