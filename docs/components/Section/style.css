@@ -1,0 +1,28 @@
+.ulSection {
+    text-align: left;
+}
+
+.ulSection li label {
+    display: block;
+    width: 100%;
+}
+
+.ulSection li label label {
+    display: inline;
+}
+
+.ulSection li label input {
+    background-color: none;
+    border: 2.5px solid var(--highlight);
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+    margin-left: 2px;
+}
+
+.ulSection li label input:checked {
+    background-color: var(--highlight);
+}
