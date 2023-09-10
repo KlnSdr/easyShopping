@@ -14,6 +14,7 @@ let state: State;
 function startup() {
     initFirebase();
     edom.init();
+    edomRouter.rewriteUrl();
     state = {
         mode: getCurrentState(),
         context: new Context(),
