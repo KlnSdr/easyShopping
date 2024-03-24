@@ -151,6 +151,7 @@ class Context {
             this.currentContext = edom.findById('contextList');
             this.clearContent();
         }
+        edom.findById('headline').text = 'Einkaufszettel';
         new Shoppinglist(state.currentList.getShoppinglist()).render(edom.findById('content'));
     }
     openInfoScreen(setContext = true) {

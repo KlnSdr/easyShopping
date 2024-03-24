@@ -14,7 +14,7 @@ class InfoScreen {
                 },
                 {
                     tag: 'p',
-                    text: 'v2.0.1',
+                    text: 'v2.0.2',
                 },
             ],
         };
