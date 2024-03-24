@@ -7,7 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/com/klnsdr/easyShopping/application/resource" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/com/klnsdr/easyShopping/application/resource/public" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/copilot/chatSessions" />
-      <excludeFolder url="file://$MODULE_DIR$/src/com/klnsdr/easyShopping/application/resource/public/docs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
