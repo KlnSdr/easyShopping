@@ -1,0 +1,12 @@
+.frownie {
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: calc(100% - 10px);
+    font-size: 123px;
+}
+
+.fa-frown-o {
+    color: var(--highlight);
+}

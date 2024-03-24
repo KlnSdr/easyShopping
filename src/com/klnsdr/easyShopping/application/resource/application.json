@@ -1,0 +1,16 @@
+{
+  "dobby": {
+    "port": 8080,
+    "threads": 10,
+    "staticContent": {
+      "directory": "public/docs"
+    },
+    "session": {
+      "maxAge": 1
+    }
+  },
+  "application": {
+    "name": "easyShopping",
+    "version": "3.0.0"
+  }
+}
