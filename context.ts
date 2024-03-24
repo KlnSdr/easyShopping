@@ -182,6 +182,7 @@ class Context {
             this.clearContent();
         }
 
+        edom.findById('headline')!.text = 'Einkaufszettel';
         new Shoppinglist(state.currentList!.getShoppinglist()).render(
             edom.findById('content')!
         );
