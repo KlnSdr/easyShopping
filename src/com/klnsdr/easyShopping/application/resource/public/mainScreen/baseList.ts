@@ -98,6 +98,7 @@ const baseListProducts: ProductObj[] = [
     { n: 'Vegane Schnitzel', s: 'selectTiefgefroren', sl: false, c: 1 },
     { n: 'Valessschnitzel', s: 'selectTiefgefroren', sl: false, c: 1 },
     { n: 'Vegane Wiener', s: 'selectTiefgefroren', sl: false, c: 1 },
+    { n: 'Veganer Fleischsalat', s: 'selectTiefgefroren', sl: false, c: 1 },
     { n: 'Schupfnudeln', s: 'selectTiefgefroren', sl: false, c: 1 },
     { n: 'Spätzle', s: 'selectTiefgefroren', sl: false, c: 1 },
     { n: 'Streuselkäse', s: 'selectMilch', sl: false, c: 1 },
