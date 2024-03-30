@@ -39,6 +39,8 @@ function initUI() {
 function checkForSharedList() {
     const urlParams: obj = getUrlParameter();
     if (urlParams['list'] !== undefined) {
+        history.replaceState(null, "", "/");
+
         const listFbId: string = urlParams['list'];
         RemoteStoreConnector.read(listFbId).then((result: obj | null) => {
             if (result !== null) {
