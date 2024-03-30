@@ -8,10 +8,10 @@ ed pack
 cp -r docs/* ../static
 rm -rf docs
 
-echo "building /hades/login"
-cd ../login || exit
-ed pack
-mkdir ../static/hades/
-mkdir ../static/hades/login
-cp -r docs/* ../static/hades/login
-rm -rf docs
+#echo "building /hades/login"
+#cd ../login || exit
+#ed pack
+#mkdir ../static/hades/
+#mkdir ../static/hades/login
+#cp -r docs/* ../static/hades/login
+#rm -rf docs
