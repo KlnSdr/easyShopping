@@ -86,9 +86,10 @@ class Store {
 }
 
 class RemoteStoreConnector {
-    public static write(data: obj): Promise<string> {
+    public static writePage(id: string | null, data: obj, pageNumber: number = 0): Promise<string> {
         return new Promise<string>(resolve => {
-            fetch("/rest/lists", {
+            const route: string = id == null ? '/rest/lists' : `/rest/lists/id/${id}/page/${pageNumber}`;
+            fetch(route, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -104,7 +105,7 @@ class RemoteStoreConnector {
 
     public static read(id: string): Promise<obj> {
         return new Promise<obj>((resolve) => {
-            fetch(`/rest/lists/${id}`)
+            fetch(`/rest/lists/id/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     resolve(data);

@@ -10,8 +10,8 @@ enum MethodShare {
 }
 
 class Product {
-    private _name: string;
-    private _section: string;
+    private readonly _name: string;
+    private readonly _section: string;
     private _selected: boolean;
     private _count: number;
     public set count(value: number) {
@@ -56,8 +56,8 @@ class Product {
 }
 
 class List {
-    private _name: string;
-    private items: Product[];
+    private readonly _name: string;
+    private readonly items: Product[];
     public get products(): Product[] {
         return this.items;
     }
@@ -86,6 +86,21 @@ class List {
         return this.items.map((item: Product) => item.serialize());
     }
 
+    public serializePage(pageNumber: number): obj | null {
+        const products: obj = {};
+        const pageSize: number = 40;
+
+        for (let i = pageNumber * pageSize; i < pageSize * (pageNumber + 1); i++) {
+            if (i >= this.items.length) {
+                break;
+            }
+            products["product" + i] = this.items[i].serialize();
+            products["product" + i].sl= this.items[i].selected ? "true" : "false";
+        }
+
+        return Object.keys(products).length == 0 ? null : products;
+    }
+
     public addProduct(product: Product) {
         this.products.push(product);
     }
@@ -93,25 +108,64 @@ class List {
     public share(method: MethodShare) {
         switch (method) {
             case MethodShare.WhatsApp:
-                const promiseId: Promise<string> = RemoteStoreConnector.write({
-                    name: this.name,
-                    data: this.serialize(),
+                let hasPage: boolean = true;
+                let pageNumber: number = 0;
+                const pages: obj[] = [];
+
+                while (hasPage) {
+                    let page: obj | null = this.serializePage(pageNumber);
+                    if (page === null) {
+                        hasPage = false;
+                    } else {
+                        pageNumber++;
+                        pages.push(page);
+                    }
+                }
+
+                if (pages.length === 0) {
+                    // todo display error message using dialog
+                    return;
+                }
+
+                const promiseId: Promise<string> = RemoteStoreConnector.writePage(null, {
+                    products: pages[0],
+                    name: this._name
                 });
 
                 promiseId.then((id: string) => {
-                    const payload: string = `https://klnsdr.github.io/easyShopping?list=${encodeURIComponent(id)}`;
-                    sendWhatsApp(payload);
+                    this.storePage(id, 1, pages);
                 });
-
                 break;
             default:
                 break;
         }
     }
+
+    private storePage(listId: string, index: number, pages: obj[]) {
+        if (index >= pages.length) {
+            this.createLinkAndSend(listId);
+            return;
+        }
+
+        RemoteStoreConnector.writePage(listId, {
+            products: pages[index]
+        }, index).then((_id: string) => {
+            if (index < pages.length) {
+                this.storePage(listId, ++index, pages);
+            } else {
+                this.createLinkAndSend(listId);
+            }
+        });
+    }
+
+    private createLinkAndSend(id: string) {
+        const payload: string = `https://klnsdr.github.io/easyShopping?list=${encodeURIComponent(id)}`;
+        sendWhatsApp(payload);
+    }
 }
 
 function sendWhatsApp(payload: string) {
-    window.location.assign(
-        `whatsapp://send?text=${encodeURIComponent(payload)}`
-    );
+    // window.location.assign(
+    //     `whatsapp://send?text=${encodeURIComponent(payload)}`
+    // );
 }

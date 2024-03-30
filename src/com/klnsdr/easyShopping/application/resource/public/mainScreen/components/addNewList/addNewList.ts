@@ -89,7 +89,7 @@ class addNewList implements DialogContentComponent {
 }
 
 class addListFromFB extends addNewList {
-    private listData: ProductObj[];
+    private readonly listData: ProductObj[];
     constructor(remoteName: string, remoteListData: ProductObj[]) {
         super();
         super.listName = remoteName;

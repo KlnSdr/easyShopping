@@ -42,7 +42,7 @@ function checkForSharedList() {
         const listFbId: string = urlParams['list'];
         RemoteStoreConnector.read(listFbId).then((result: obj | null) => {
             if (result !== null) {
-                new Dialog(new addListFromFB(result.name, result.data)).render(
+                new Dialog(new addListFromFB(result.name, result.products)).render(
                     edom.findById('content')!
                 );
             }
