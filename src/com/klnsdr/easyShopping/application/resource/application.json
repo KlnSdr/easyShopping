@@ -3,7 +3,7 @@
     "port": 8080,
     "threads": 10,
     "staticContent": {
-      "directory": "public/docs"
+      "directory": "public/static"
     },
     "session": {
       "maxAge": 1
