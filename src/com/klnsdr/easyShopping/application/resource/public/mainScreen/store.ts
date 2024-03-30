@@ -85,39 +85,30 @@ class Store {
     }
 }
 
-class FirebaseConnector {
-    private static fbUrl: string = 'https://easyshopping-ac502.firebaseio.com';
-    private static database: any;
-
-    public static write(data: obj): string {
-        //@ts-ignore
-        const id: string = FirebaseConnector.database
-            .ref('lists')
-            .push(data).key;
-        return id;
-    }
-
-    public static read(id: string): Promise<obj> {
-        return new Promise<obj>((resolve) => {
-            FirebaseConnector.database
-                .ref(`lists/${id}`)
-                .once('value', (data: any) => {
-                    resolve(data.val());
+class RemoteStoreConnector {
+    public static write(data: obj): Promise<string> {
+        return new Promise<string>(resolve => {
+            fetch("/rest/lists", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    resolve(data.id);
                 });
         });
     }
 
-    public static initConnection() {
-        //@ts-ignore
-        firebase.initializeApp({
-            databaseURL: FirebaseConnector.fbUrl,
+    public static read(id: string): Promise<obj> {
+        return new Promise<obj>((resolve) => {
+            fetch(`/rest/lists/${id}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    resolve(data);
+                });
         });
-        //@ts-ignore
-        FirebaseConnector.database = firebase.database();
-    }
-
-    public static closeConnection() {
-        //@ts-ignore
-        firebase.database().goOffline();
     }
 }

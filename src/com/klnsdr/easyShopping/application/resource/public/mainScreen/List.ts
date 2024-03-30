@@ -93,15 +93,16 @@ class List {
     public share(method: MethodShare) {
         switch (method) {
             case MethodShare.WhatsApp:
-                const fbId: string = FirebaseConnector.write({
+                const promiseId: Promise<string> = RemoteStoreConnector.write({
                     name: this.name,
                     data: this.serialize(),
                 });
 
-                const payload: string = `https://klnsdr.github.io/easyShopping?list=${encodeURIComponent(
-                    fbId
-                )}`;
-                sendWhatsApp(payload);
+                promiseId.then((id: string) => {
+                    const payload: string = `https://klnsdr.github.io/easyShopping?list=${encodeURIComponent(id)}`;
+                    sendWhatsApp(payload);
+                });
+
                 break;
             default:
                 break;
