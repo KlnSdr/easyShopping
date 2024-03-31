@@ -88,7 +88,8 @@ class Store {
 class RemoteStoreConnector {
     public static writePage(id: string | null, data: obj, pageNumber: number = 0): Promise<string> {
         return new Promise<string>(resolve => {
-            const route: string = id == null ? '/rest/lists' : `/rest/lists/id/${id}/page/${pageNumber}`;
+            // hardcode context for now
+            const route: string = id == null ? '/easyShopping/rest/lists' : `/easyShopping/rest/lists/id/${id}/page/${pageNumber}`;
             fetch(route, {
                 method: "POST",
                 headers: {
@@ -105,7 +106,8 @@ class RemoteStoreConnector {
 
     public static read(id: string): Promise<obj> {
         return new Promise<obj>((resolve) => {
-            fetch(`/rest/lists/id/${id}`)
+            // hardcode context for now
+            fetch(`/easyShopping/rest/lists/id/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     resolve(data);
