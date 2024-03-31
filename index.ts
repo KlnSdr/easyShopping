@@ -12,7 +12,6 @@ interface State {
 let state: State;
 
 function startup() {
-    initFirebase();
     edom.init();
     state = {
         mode: getCurrentState(),
@@ -21,8 +20,6 @@ function startup() {
     };
 
     initUI();
-
-    checkForSharedList();
 }
 
 function getCurrentState(): AppMode {
@@ -35,39 +32,4 @@ function getCurrentState(): AppMode {
 
 function initUI() {
     UI.init();
-}
-
-function initFirebase() {
-    FirebaseConnector.initConnection();
-    window.onbeforeunload = () => {
-        FirebaseConnector.closeConnection();
-    };
-}
-
-function checkForSharedList() {
-    const urlParams: obj = getUrlParameter();
-    if (urlParams['list'] !== undefined) {
-        const listFbId: string = urlParams['list'];
-        FirebaseConnector.read(listFbId).then((result: obj | null) => {
-            if (result !== null) {
-                new Dialog(new addListFromFB(result.name, result.data)).render(
-                    edom.findById('content')!
-                );
-            }
-        });
-    }
-}
-
-function getUrlParameter(): obj {
-    const parameterString: string = window.location.search.substring(1);
-    if (parameterString === '') {
-        return {};
-    }
-    let params: obj = {};
-    parameterString.split('&').forEach((keyValue: string) => {
-        const [key, value] = keyValue.split('=');
-        params[key] = value;
-    });
-
-    return params;
 }

@@ -31,12 +31,6 @@ class ListSettings implements Component {
                 }
             },
         },
-        'fa-share': {
-            type: 'click',
-            id: 'shareList',
-            body: (_self: edomElement) =>
-                state.currentList?.share(MethodShare.WhatsApp),
-        },
     };
 
     public render(parent: edomElement) {
@@ -47,15 +41,13 @@ class ListSettings implements Component {
         return {
             tag: 'div',
             classes: ['containerSettingsButtons'],
-            children: ['fa-undo', 'fa-recycle', 'fa-share'].map(
-                (className: string) => {
-                    return {
-                        tag: 'button',
-                        classes: ['fa', className],
-                        handler: [ListSettings.buttonHandler[className]],
-                    };
-                }
-            ),
+            children: ['fa-undo', 'fa-recycle'].map((className: string) => {
+                return {
+                    tag: 'button',
+                    classes: ['fa', className],
+                    handler: [ListSettings.buttonHandler[className]],
+                };
+            }),
         };
     }
 
