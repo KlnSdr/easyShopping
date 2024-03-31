@@ -1,0 +1,10 @@
+.containerShareButtons {
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 5px;
+}
+
+.hidden {
+  visibility: collapse;
+}
