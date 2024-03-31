@@ -11,9 +11,6 @@
   },
   "application": {
     "name": "easyShopping",
-    "version": "3.0.0",
-    "data": {
-      "context": "/easyShopping"
-    }
+    "version": "3.0.0"
   }
 }
