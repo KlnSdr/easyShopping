@@ -7,7 +7,7 @@ class ListSettings {
         return {
             tag: 'div',
             classes: ['containerSettingsButtons'],
-            children: ['fa-undo', 'fa-recycle', 'fa-share'].map((className) => {
+            children: ['fa-undo', 'fa-recycle'].map((className) => {
                 return {
                     tag: 'button',
                     classes: ['fa', className],
@@ -47,10 +47,5 @@ ListSettings.buttonHandler = {
                 self.applyStyle('fail');
             }
         },
-    },
-    'fa-share': {
-        type: 'click',
-        id: 'shareList',
-        body: (_self) => { var _a; return (_a = state.currentList) === null || _a === void 0 ? void 0 : _a.share(MethodShare.WhatsApp); },
     },
 };

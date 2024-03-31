@@ -57,34 +57,3 @@ class Store {
     }
 }
 Store.storeKey = 'easyShopping';
-class FirebaseConnector {
-    static write(data) {
-        //@ts-ignore
-        const id = FirebaseConnector.database
-            .ref('lists')
-            .push(data).key;
-        return id;
-    }
-    static read(id) {
-        return new Promise((resolve) => {
-            FirebaseConnector.database
-                .ref(`lists/${id}`)
-                .once('value', (data) => {
-                resolve(data.val());
-            });
-        });
-    }
-    static initConnection() {
-        //@ts-ignore
-        firebase.initializeApp({
-            databaseURL: FirebaseConnector.fbUrl,
-        });
-        //@ts-ignore
-        FirebaseConnector.database = firebase.database();
-    }
-    static closeConnection() {
-        //@ts-ignore
-        firebase.database().goOffline();
-    }
-}
-FirebaseConnector.fbUrl = 'https://easyshopping-ac502.firebaseio.com';

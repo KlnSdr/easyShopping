@@ -62,21 +62,5 @@ class List {
     addProduct(product) {
         this.products.push(product);
     }
-    share(method) {
-        switch (method) {
-            case MethodShare.WhatsApp:
-                const fbId = FirebaseConnector.write({
-                    name: this.name,
-                    data: this.serialize(),
-                });
-                const payload = `https://klnsdr.github.io/easyShopping?list=${encodeURIComponent(fbId)}`;
-                sendWhatsApp(payload);
-                break;
-            default:
-                break;
-        }
-    }
-}
-function sendWhatsApp(payload) {
-    window.location.assign(`whatsapp://send?text=${encodeURIComponent(payload)}`);
+    share(method) { }
 }
