@@ -20,6 +20,8 @@ function startup() {
     };
 
     initUI();
+
+    new Dialog(new eolAlert()).render(edom.body);
 }
 
 function getCurrentState(): AppMode {
