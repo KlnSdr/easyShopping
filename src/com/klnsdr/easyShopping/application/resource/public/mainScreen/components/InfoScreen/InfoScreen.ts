@@ -14,7 +14,7 @@ class InfoScreen implements Component {
                 },
                 {
                     tag: 'p',
-                    text: 'v3.0.0',
+                    text: 'v3.0.1',
                 },
             ],
         };
