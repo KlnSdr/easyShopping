@@ -1,13 +1,24 @@
 package com.klnsdr.easyShopping.storage;
 
 import dobby.util.Json;
-import hades.common.DataClass;
+import janus.DataClass;
+import janus.annotations.JanusBoolean;
+import janus.annotations.JanusInteger;
+import janus.annotations.JanusString;
 
 public class Product implements DataClass {
-    private final String name;
-    private final String section;
-    private final boolean selected;
-    private final int count;
+    @JanusString("n")
+    private String name;
+    @JanusString("s")
+    private String section;
+    @JanusBoolean("sl")
+    private boolean selected;
+    @JanusInteger("c")
+    private int count;
+
+    public Product() {
+
+    }
 
     public Product(String name, String section, boolean selected, int count) {
         this.name = name;

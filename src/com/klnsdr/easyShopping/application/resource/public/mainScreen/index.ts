@@ -37,10 +37,14 @@ function initUI() {
 }
 
 function checkForSharedList() {
+    if (!window.location.pathname.toLowerCase().startsWith("{{CONTEXT}}/share".toLowerCase())) {
+        return;
+    }
+
     const urlParams: obj = getUrlParameter();
     if (urlParams['list'] !== undefined) {
         // hardcode context for now
-        history.replaceState(null, "", "/easyShopping/");
+        history.replaceState(null, "", "{{CONTEXT}}/");
 
         const listFbId: string = urlParams['list'];
         RemoteStoreConnector.read(listFbId).then((result: obj | null) => {

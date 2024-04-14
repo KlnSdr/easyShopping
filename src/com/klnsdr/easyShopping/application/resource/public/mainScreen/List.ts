@@ -164,7 +164,7 @@ class List {
   }
 
   private createLink(id: string) {
-    const payload: string = `https://klnsdr.com/easyShopping/?list=${encodeURIComponent(
+    const payload: string = `https://klnsdr.com{{CONTEXT}}/share/?list=${encodeURIComponent(
       id
     )}`;
     uploadListProgess.setShareLink(payload);

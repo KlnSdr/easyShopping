@@ -2,20 +2,29 @@ package com.klnsdr.easyShopping.storage;
 
 import com.klnsdr.easyShopping.storage.service.ListService;
 import dobby.util.Json;
-import hades.common.DataClass;
+import janus.DataClass;
+import janus.annotations.JanusList;
+import janus.annotations.JanusString;
+import janus.annotations.JanusUUID;
 import thot.annotations.Bucket;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Bucket(ListService.BUCKET_NAME)
 public class ShoppingList implements DataClass {
-    private final String name;
-    private final UUID id;
+    @JanusString("name")
+    private String name;
+    @JanusUUID("id")
+    private UUID id;
+    @JanusList("products")
     private final List<Product> products = new ArrayList<>();
+
+    public ShoppingList() {
+
+    }
 
     public ShoppingList(String name) {
         this.name = name;
