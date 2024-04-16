@@ -11,9 +11,17 @@
   },
   "application": {
     "name": "easyShopping",
-    "version": "3.0.2"
+    "version": "3.0.3"
   },
   "hades": {
+    "login": {
+      "maxAttempts": 5,
+      "lockDuration": 300000,
+      "redirect": {
+        "success": "/",
+        "successAdmin": "/hades/"
+      }
+    },
     "context": "/easyShopping"
   }
 }
