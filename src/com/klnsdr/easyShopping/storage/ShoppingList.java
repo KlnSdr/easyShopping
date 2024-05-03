@@ -1,7 +1,7 @@
 package com.klnsdr.easyShopping.storage;
 
 import com.klnsdr.easyShopping.storage.service.ListService;
-import dobby.util.Json;
+import dobby.util.json.NewJson;
 import janus.DataClass;
 import janus.annotations.JanusList;
 import janus.annotations.JanusString;
@@ -57,8 +57,8 @@ public class ShoppingList implements DataClass {
     }
 
     @Override
-    public Json toJson() {
-        final Json json = new Json();
+    public NewJson toJson() {
+        final NewJson json = new NewJson();
         json.setString("name", name);
         json.setString("id", id.toString());
         json.setList("products", products.stream().map(Product::toJson).collect(Collectors.toList()));

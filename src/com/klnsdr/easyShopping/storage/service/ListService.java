@@ -1,7 +1,7 @@
 package com.klnsdr.easyShopping.storage.service;
 
 import com.klnsdr.easyShopping.storage.ShoppingList;
-import dobby.util.Json;
+import dobby.util.json.NewJson;
 import janus.Janus;
 import thot.connector.Connector;
 
@@ -24,6 +24,6 @@ public class ListService {
     }
 
     public ShoppingList get(String key) {
-        return Janus.parse(Connector.read(BUCKET_NAME, key, Json.class), ShoppingList.class);
+        return Janus.parse(Connector.read(BUCKET_NAME, key, NewJson.class), ShoppingList.class);
     }
 }

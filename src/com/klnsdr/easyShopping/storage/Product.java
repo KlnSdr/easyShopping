@@ -1,6 +1,6 @@
 package com.klnsdr.easyShopping.storage;
 
-import dobby.util.Json;
+import dobby.util.json.NewJson;
 import janus.DataClass;
 import janus.annotations.JanusBoolean;
 import janus.annotations.JanusInteger;
@@ -33,8 +33,8 @@ public class Product implements DataClass {
     }
 
     @Override
-    public Json toJson() {
-        final Json json = new Json();
+    public NewJson toJson() {
+        final NewJson json = new NewJson();
         json.setString("n", name);
         json.setString("s", section);
         json.setString("sl", selected ? "true" : "false");
