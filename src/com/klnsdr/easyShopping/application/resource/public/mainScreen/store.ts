@@ -86,10 +86,9 @@ class Store {
 }
 
 class RemoteStoreConnector {
-    public static writePage(id: string | null, data: obj, pageNumber: number = 0): Promise<string> {
+    public static write(data: obj): Promise<string> {
         return new Promise<string>(resolve => {
-            // hardcode context for now
-            const route: string = id == null ? '{{CONTEXT}}/rest/lists' : `{{CONTEXT}}/rest/lists/id/${id}/page/${pageNumber}`;
+            const route: string = '{{CONTEXT}}/rest/lists';
             fetch(route, {
                 method: "POST",
                 headers: {

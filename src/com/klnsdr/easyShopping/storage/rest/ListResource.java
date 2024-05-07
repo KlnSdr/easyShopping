@@ -10,6 +10,8 @@ import dobby.io.response.ResponseCodes;
 import dobby.util.json.NewJson;
 import dobby.util.logging.Logger;
 
+import java.util.List;
+
 public class ListResource {
     private static final int PAGE_SIZE = 30;
     private static final String BASE_URL = "/rest/lists";
@@ -18,13 +20,17 @@ public class ListResource {
     @Post(BASE_URL)
     public void saveList(HttpContext context) {
         LOGGER.debug("creating new list");
+
         final NewJson payload = context.getRequest().getBody();
-        final String listName = payload.getString("name");
 
-        final ShoppingList list = new ShoppingList(listName);
+        if (!payload.hasKeys("name", "products")) {
+            context.getResponse().setCode(ResponseCodes.BAD_REQUEST);
+            final NewJson errorMessage = new NewJson();
+            errorMessage.setString("msg", "missing required fields");
+            return;
+        }
 
-        final NewJson products = payload.getJson("products");
-        addAllProducts(list, products, 0);
+        final ShoppingList list = getShoppingList(payload);
 
         final boolean success = ListService.getInstance().update(list);
 
@@ -43,47 +49,33 @@ public class ListResource {
         context.getResponse().setCode(ResponseCodes.CREATED);
     }
 
-    @Post(BASE_URL + "/id/{listId}/page/{pageNumber}")
-    public void appendPageToList(HttpContext context) {
-        final int pageNumber;
-        try {
-            pageNumber = Integer.parseInt(context.getRequest().getParam("pageNumber"));
-        } catch (NumberFormatException e) {
-            context.getResponse().setCode(ResponseCodes.BAD_REQUEST);
-            final NewJson errorMessage = new NewJson();
-            errorMessage.setString("msg", "invalid page number");
-            return;
+    private static ShoppingList getShoppingList(NewJson payload) {
+        final String listName = payload.getString("name");
+        final ShoppingList list = new ShoppingList(listName);
+        final List<Object> products = payload.getList("products");
+
+        for (Object product : products) {
+            if (!(product instanceof NewJson)) {
+                LOGGER.error("invalid product in list");
+                continue;
+            }
+
+            final NewJson productJson = (NewJson) product;
+
+            if (!productJson.hasKeys("n", "s", "sl", "c")) {
+                LOGGER.error("missing required fields in product");
+                continue;
+            }
+
+            final Product newProduct = new Product(
+                    productJson.getString("n"),
+                    productJson.getString("s"),
+                    productJson.getBoolean("sl"),
+                    productJson.getInt("c")
+            );
+            list.addProduct(newProduct);
         }
-
-        final String listId = context.getRequest().getParam("listId");
-        LOGGER.debug("appending page to list " + listId);
-
-        final ShoppingList list = ListService.getInstance().get(listId);
-
-        if (list == null) {
-            context.getResponse().setCode(ResponseCodes.NOT_FOUND);
-            final NewJson errorMessage = new NewJson();
-            errorMessage.setString("msg", "list not found");
-            return;
-        }
-
-        final NewJson payload = context.getRequest().getBody();
-        final NewJson products = payload.getJson("products");
-        addAllProducts(list, products, pageNumber * PAGE_SIZE);
-
-        final boolean success = ListService.getInstance().update(list);
-
-        if (!success) {
-            context.getResponse().setCode(ResponseCodes.INTERNAL_SERVER_ERROR);
-            final NewJson errorMessage = new NewJson();
-            errorMessage.setString("msg", "failed to save list");
-            return;
-        }
-
-        final NewJson responsePayload = new NewJson();
-        responsePayload.setString("id", listId);
-
-        context.getResponse().setBody(responsePayload);
+        return list;
     }
 
     @Get(BASE_URL + "/id/{listId}")
@@ -105,19 +97,5 @@ public class ListResource {
         context.getResponse().setBody(responsePayload.toString().replaceAll("\"true\"", "true").replaceAll("\"false\"", "false"));
         context.getResponse().setHeader("Content-Type", "application/json; charset=utf-8");
 
-    }
-
-    private void addAllProducts(ShoppingList list, NewJson products, int startIndex) {
-        int i = startIndex;
-        while (products.hasKey("product" + i)) {
-            final NewJson product = products.getJson("product" + i);
-            final String name = product.getString("n");
-            final String section = product.getString("s");
-            final boolean selected = product.getString("sl").equals("true");
-            final int count = product.getInt("c");
-
-            list.addProduct(new Product(name, section, selected, count));
-            i++;
-        }
     }
 }

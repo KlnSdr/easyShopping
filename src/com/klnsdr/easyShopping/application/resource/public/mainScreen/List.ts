@@ -80,21 +80,6 @@ class List {
     return this.items.map((item: Product) => item.serialize());
   }
 
-  public serializePage(pageNumber: number): obj | null {
-    const products: obj = {};
-    const pageSize: number = 30;
-
-    for (let i = pageNumber * pageSize; i < pageSize * (pageNumber + 1); i++) {
-      if (i >= this.items.length) {
-        break;
-      }
-      products["product" + i] = this.items[i].serialize();
-      products["product" + i].sl = this.items[i].selected ? "true" : "false";
-    }
-
-    return Object.keys(products).length == 0 ? null : products;
-  }
-
   public addProduct(product: Product) {
     this.products.push(product);
   }
@@ -102,65 +87,18 @@ class List {
   public share(method: MethodShare) {
     switch (method) {
       case MethodShare.WhatsApp:
-        let hasPage: boolean = true;
-        let pageNumber: number = 0;
-        const pages: obj[] = [];
-
-        while (hasPage) {
-          let page: obj | null = this.serializePage(pageNumber);
-          if (page === null) {
-            hasPage = false;
-          } else {
-            pageNumber++;
-            pages.push(page);
-          }
-        }
-
-        if (pages.length === 0) {
-          // todo display error message using dialog
-          return;
-        }
-
         new Dialog(new uploadListProgess()).render(edom.body);
-
-        uploadListProgess.updateCurrentPage(1, pages.length);
-        const promiseId: Promise<string> = RemoteStoreConnector.writePage(
-          null,
-          {
-            products: pages[0],
-            name: this._name,
-          }
-        );
-
-        promiseId.then((id: string) => {
-          this.storePage(id, 1, pages);
+        RemoteStoreConnector.write({
+          name: this.name,
+          products: this.serialize()
+        }).then((id: string) => {
+            console.log(id);
+            this.createLink(id);
         });
         break;
       default:
         break;
     }
-  }
-
-  private storePage(listId: string, index: number, pages: obj[]) {
-    if (index >= pages.length) {
-      this.createLink(listId);
-      return;
-    }
-
-    uploadListProgess.updateCurrentPage(index + 1, pages.length);
-    RemoteStoreConnector.writePage(
-      listId,
-      {
-        products: pages[index],
-      },
-      index
-    ).then((_id: string) => {
-      if (index < pages.length) {
-        this.storePage(listId, ++index, pages);
-      } else {
-        this.createLink(listId);
-      }
-    });
   }
 
   private createLink(id: string) {
