@@ -13,7 +13,6 @@ import dobby.util.logging.Logger;
 import java.util.List;
 
 public class ListResource {
-    private static final int PAGE_SIZE = 30;
     private static final String BASE_URL = "/rest/lists";
     private static final Logger LOGGER = new Logger(ListResource.class);
 
