@@ -7,11 +7,12 @@
     },
     "session": {
       "maxAge": 1
-    }
+    },
+    "logLevel": "WARN"
   },
   "application": {
     "name": "easyShopping",
-    "version": "3.0.8"
+    "version": "3.0.9"
   },
   "hades": {
     "login": {
