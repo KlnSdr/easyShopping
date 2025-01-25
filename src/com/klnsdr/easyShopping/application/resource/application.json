@@ -8,11 +8,11 @@
     "session": {
       "maxAge": 1
     },
-    "logLevel": "WARN"
+    "logLevel": "DEBUG"
   },
   "application": {
     "name": "easyShopping",
-    "version": "3.0.9"
+    "version": "3.8"
   },
   "hades": {
     "login": {
