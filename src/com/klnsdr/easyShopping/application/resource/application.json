@@ -8,11 +8,13 @@
     "session": {
       "maxAge": 1
     },
-    "logLevel": "DEBUG"
+    "logLevel": "WARN"
   },
   "application": {
     "name": "easyShopping",
-    "version": "3.8"
+    "version": "3.9",
+    "dbHost": "thot-container",
+    "devMode": false
   },
   "hades": {
     "login": {
@@ -22,7 +24,6 @@
         "success": "/",
         "successAdmin": "/hades/"
       }
-    },
-    "context": "/easyShopping"
+    }
   }
 }
