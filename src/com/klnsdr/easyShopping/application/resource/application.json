@@ -8,11 +8,11 @@
     "session": {
       "maxAge": 1
     },
-    "logLevel": "DEBUG"
+    "logLevel": "WARN"
   },
   "application": {
     "name": "easyShopping",
-    "version": "3.9",
+    "version": "3.10",
     "dbHost": "thot-container",
     "devMode": false
   },
