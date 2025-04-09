@@ -8,7 +8,7 @@ import dobby.annotations.Post;
 import dobby.io.HttpContext;
 import dobby.io.response.ResponseCodes;
 import dobby.util.json.NewJson;
-import dobby.util.logging.Logger;
+import common.logger.Logger;
 
 import java.util.List;
 

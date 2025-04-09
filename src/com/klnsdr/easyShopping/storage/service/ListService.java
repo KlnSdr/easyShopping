@@ -2,8 +2,8 @@ package com.klnsdr.easyShopping.storage.service;
 
 import com.klnsdr.easyShopping.storage.ShoppingList;
 import dobby.util.json.NewJson;
-import janus.Janus;
 import thot.connector.Connector;
+import thot.janus.Janus;
 
 public class ListService {
     public static final String BUCKET_NAME = "easy_lists";

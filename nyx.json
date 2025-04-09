@@ -3,13 +3,13 @@
   "project": {
     "entry": "com.klnsdr.easyShopping.application.Main",
     "name": "easyShopping",
-    "version": "3.10",
+    "version": "3.11",
     "group": "dobby",
     "dependencies": [
       {
         "group": "dobby",
         "name": "hades",
-        "version": "0.7"
+        "version": "2.1"
       }
     ]
   },

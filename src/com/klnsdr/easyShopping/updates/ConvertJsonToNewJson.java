@@ -3,11 +3,11 @@ package com.klnsdr.easyShopping.updates;
 import com.klnsdr.easyShopping.storage.service.ListService;
 import dobby.util.Json;
 import dobby.util.json.NewJson;
-import dobby.util.logging.Logger;
+import common.logger.Logger;
 import hades.update.Update;
 import thot.connector.Connector;
 
-import static hades.common.Util.convert;
+import static dobby.util.JsonConverter.convert;
 
 public class ConvertJsonToNewJson implements Update {
     private static final Logger LOGGER = new Logger(ConvertJsonToNewJson.class);

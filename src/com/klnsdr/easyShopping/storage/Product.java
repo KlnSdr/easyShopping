@@ -1,10 +1,10 @@
 package com.klnsdr.easyShopping.storage;
 
 import dobby.util.json.NewJson;
-import janus.DataClass;
-import janus.annotations.JanusBoolean;
-import janus.annotations.JanusInteger;
-import janus.annotations.JanusString;
+import thot.janus.DataClass;
+import thot.janus.annotations.JanusBoolean;
+import thot.janus.annotations.JanusInteger;
+import thot.janus.annotations.JanusString;
 
 public class Product implements DataClass {
     @JanusString("n")
