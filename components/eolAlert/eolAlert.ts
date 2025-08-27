@@ -13,7 +13,7 @@ class eolAlert implements DialogContentComponent {
                 },
                 {
                     tag: 'p',
-                    text: 'Ein neuere und verbesserte Version ist jetzt unter klnsdr.com/easyShopping zu finden.',
+                    text: 'Ein neuere und verbesserte Version ist jetzt unter easyshopping.klnsdr.com/ zu finden.',
                 },
                 {
                     tag: 'button',
