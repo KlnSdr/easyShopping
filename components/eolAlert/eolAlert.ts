@@ -24,7 +24,7 @@ class eolAlert implements DialogContentComponent {
                             type: 'click',
                             body: (_self: edomElement) => {
                                 window.location.assign(
-                                    'https://klnsdr.com/easyShopping'
+                                    'https://easyshopping.klnsdr.com'
                                 );
                             },
                         },

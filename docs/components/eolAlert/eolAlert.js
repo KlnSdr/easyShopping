@@ -23,7 +23,7 @@ class eolAlert {
                             id: 'goToKlnsdrCom',
                             type: 'click',
                             body: (_self) => {
-                                window.location.assign('https://klnsdr.com/easyShopping');
+                                window.location.assign('https://easyshopping.klnsdr.com');
                             },
                         },
                     ],
