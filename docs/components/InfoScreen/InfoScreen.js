@@ -14,7 +14,7 @@ class InfoScreen {
                 },
                 {
                     tag: 'p',
-                    text: 'v2.0.3-EOL',
+                    text: 'v2.0.4-EOL',
                 },
             ],
         };

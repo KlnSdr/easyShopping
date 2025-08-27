@@ -74,7 +74,7 @@ class addNewList {
 class addListFromFB extends addNewList {
     constructor(remoteName, remoteListData) {
         super();
-        super.listName = remoteName;
+        this.listName = remoteName;
         this.listData = remoteListData;
     }
     createNewList(self) {

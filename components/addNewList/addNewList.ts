@@ -92,7 +92,7 @@ class addListFromFB extends addNewList {
     private listData: ProductObj[];
     constructor(remoteName: string, remoteListData: ProductObj[]) {
         super();
-        super.listName = remoteName;
+        this.listName = remoteName;
         this.listData = remoteListData;
     }
 
