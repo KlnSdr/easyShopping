@@ -8,7 +8,7 @@
     "session": {
       "maxAge": 1
     },
-    "logLevel": "DEBUG"
+    "logLevel": "WARN"
   },
   "application": {
     "name": "easyShopping",
